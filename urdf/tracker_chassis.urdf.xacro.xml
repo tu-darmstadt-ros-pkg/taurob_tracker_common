@@ -8,6 +8,9 @@
     <property name="base_size_y" value="0.24" />
     <property name="base_size_z" value="0.312 " />
     
+    <property name="base_offset_x" value="-0.122" />
+    <property name="base_offset_z" value="-0.05" />
+    
     <macro name="tracker_chassis_macro">
 
         <link name="base_link">
@@ -29,7 +32,24 @@
                 
             </visual>
             
-<!--	    <body_geom_macro />-->
+	    <collision>
+              <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z}" rpy="0 0 0"/>
+              <geometry>
+                <box size="0.74 0.5 0.2"/>
+              </geometry>
+	    </collision>
+	    <collision>
+              <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
+              <geometry>
+                <box size="1.05 0.14 0.35"/>
+              </geometry>
+	    </collision>
+	    <collision>
+              <origin xyz="${base_offset_x} 0.23 ${base_offset_z}" rpy="0 0 0"/>
+              <geometry>
+                <box size="1.05 0.14 0.35"/>
+              </geometry>
+	    </collision>     
         </link>
         
 <!--        

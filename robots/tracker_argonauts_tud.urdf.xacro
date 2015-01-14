@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<robot name="argonaut_robot"
+    xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+    
+    <property name="flipper_offset_x" value="0.205" />
+    <property name="flipper_offset_y" value="0.15" />
+    <property name="flipper_offset_z" value="0.099" />
+    
+    <property name="M_PI" value="3.14159" />
+    <property name="angle_deg" value="45" />
+    
+    
+    <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.urdf.xacro.xml" />
+    
+    <tracker_chassis_macro />    
+
+    <xacro:include filename="$(find hector_components_description)/urdf/spinning_hokuyo_utm30lx.urdf.xacro" />
+     
+    <spinning_hokuyo_utm30lx_lidar_mount_offset_macro parent="base_link" name="front" angle_deg="45">
+      <origin xyz="0.1 0 0.1" rpy="0 ${45 * M_PI/180.0} 0"/>
+    </spinning_hokuyo_utm30lx_lidar_mount_offset_macro >   
+    
+</robot>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<robot name="argonaut_robot" xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" >
+  
+    <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
+    
+    <property name="base_size_x" value="${0.365*2}" />
+    <property name="base_size_y" value="0.24" />
+    <property name="base_size_z" value="0.312 " />
+    
+    <macro name="tracker_chassis_macro">
+
+        <link name="base_link">
+	    
+	    
+    <xacro:inertial_cuboid_with_pose mass="20" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >
+      <origin xyz="0.0 0.0 ${0.312*0.5}" rpy="0 0 0" />
+    </xacro:inertial_cuboid_with_pose>
+            
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <!--<box size="${base_size_x} ${base_size_y} ${base_size_z}" />-->
+                    <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis.dae"/>
+                </geometry>
+<!--                <material name="Red" >
+                    <color rgba="0.9 0.0 0.0 1"/>
+                </material>-->
+                
+            </visual>
+            
+<!--	    <body_geom_macro />-->
+        </link>
+        
+<!--        
+        <gazebo reference="base_link">
+          <material>Gazebo/Red</material>
+        </gazebo>-->
+    </macro>
+    
+    
+</robot>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<launch>
+  
+  <include file="$(find argo_robot_description)/launch/xacrodisplay_common.launch">
+    <arg name="robot_description" value="$(find xacro)/xacro.py $(find taurob_tracker_description)/robots/tracker_argonauts_tud.urdf.xacro"/>  
+  </include>  
+  
+</launch>

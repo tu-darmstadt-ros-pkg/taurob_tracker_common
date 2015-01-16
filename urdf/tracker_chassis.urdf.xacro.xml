@@ -12,8 +12,16 @@
     <property name="base_offset_z" value="-0.05" />
     
     <macro name="tracker_chassis_macro">
-
-        <link name="base_link">
+    
+    <link name="base_link"/>
+      
+    <joint name="chassis_joint" type="fixed">
+      <origin xyz="${-base_offset_x} 0 0.18" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="chassis_link"/>
+    </joint>
+    
+   <link name="chassis_link">
 	    
 	    
     <xacro:inertial_cuboid_with_pose mass="20" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >

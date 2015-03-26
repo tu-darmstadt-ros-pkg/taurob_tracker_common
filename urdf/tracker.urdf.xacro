@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="argonaut_robot"
+<robot name="taurob_tracker"
     xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
     
     <property name="flipper_offset_x" value="0.205" />
@@ -12,8 +12,13 @@
     
     
     <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.urdf.xacro.xml" />
+    <xacro:include filename="$(find taurob_arm_description)/urdf/taurob_arm_collision_geoms_simple.urdf.xacro.xml" />
+    <xacro:include filename="$(find taurob_arm_description)/urdf/taurob_arm.urdf.xacro.xml" />
     
     <tracker_chassis_macro />    
+    <taurob_arm_macro parent="base_link">
+      <origin xyz="0.12 0 0.185" rpy="0 0 ${M_PI/2}"/>
+    </taurob_arm_macro >
 
     <xacro:include filename="$(find hector_components_description)/urdf/spinning_hokuyo_utm30lx.urdf.xacro" />
      

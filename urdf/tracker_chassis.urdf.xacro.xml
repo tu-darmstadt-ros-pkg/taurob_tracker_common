@@ -20,14 +20,47 @@
       <parent link="base_link"/>
       <child link="chassis_link"/>
     </joint>
+
+	<link name="flipper_link">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+               
+            
+	    <collision>
+              <origin xyz="0.5 -0.23 ${base_offset_z}" rpy="0 0 0"/>
+              <geometry>
+                <box size="1.05 0.14 0.35"/>
+              </geometry>
+	    </collision>
+	    <collision>
+              <origin xyz="0.5 0.23 ${base_offset_z}" rpy="0 0 0"/>
+              <geometry>
+                <box size="1.05 0.14 0.35"/>
+              </geometry>
+	    </collision>
+ 
+        </link>
     
+<joint name="flipper_front" type="revolute"> 
+      <origin xyz="${base_offset_x-0.5} 0 0" rpy="0 0 0" />   
+      <axis xyz="0 -1 0"/>
+	     
+	 <limit lower="${-30 * M_PI / 180}" upper="${50 * M_PI / 180}"
+             effort="204" velocity="${1.0 * 110 * M_PI / 180}" />
+        <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
+                         soft_upper_limit="${45 * M_PI / 180}"
+                         k_position="${100}"
+                         k_velocity="${2}"/>
+     
+      <parent link="chassis_link"/>
+      <child link="flipper_link"/>
+    </joint>
+
+
    <link name="chassis_link">
-	    
 	    
     <xacro:inertial_cuboid_with_pose mass="20" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >
       <origin xyz="0.0 0.0 ${0.312*0.5}" rpy="0 0 0" />
     </xacro:inertial_cuboid_with_pose>
-            
             <visual>
                 <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
                 <geometry>
@@ -35,7 +68,7 @@
                 </geometry>
                 
             </visual>
-            
+        
 	    <collision>
               <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z}" rpy="0 0 0"/>
               <geometry>
@@ -53,7 +86,8 @@
               <geometry>
                 <box size="1.05 0.14 0.35"/>
               </geometry>
-	    </collision>     
+	    </collision>
+     
         </link>
 
 

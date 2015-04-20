@@ -20,7 +20,7 @@
       <parent link="base_link"/>
       <child link="chassis_link"/>
     </joint>
-
+<!--
 	<link name="flipper_link">
 		<origin xyz="0 0 0" rpy="0 0 0" />
                
@@ -53,7 +53,7 @@
      
       <parent link="chassis_link"/>
       <child link="flipper_link"/>
-    </joint>
+    </joint>-->
 
 
    <link name="chassis_link">
@@ -78,13 +78,13 @@
 	    <collision>
               <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
               <geometry>
-                <box size="1.05 0.14 0.35"/>
+                <box size="1.0 0.13 0.35"/>
               </geometry>
 	    </collision>
 	    <collision>
               <origin xyz="${base_offset_x} 0.23 ${base_offset_z}" rpy="0 0 0"/>
               <geometry>
-                <box size="1.05 0.14 0.35"/>
+                <box size="1.0 0.13 0.35"/>
               </geometry>
 	    </collision>
      

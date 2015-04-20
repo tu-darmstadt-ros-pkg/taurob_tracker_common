@@ -18,9 +18,12 @@
 
     <property name="wheel_radius_big" value="0.085" />
     <property name="wheel_length" value="0.02" />
-    <property name="wheel_size_y" value="0.0825" /> 
-    <property name="wheel_offset_y" value="0.1697" />
+    <property name="wheel_size_y" value="0.02" /> 
+    <property name="wheel_offset_y" value="0.25" />
     <property name="wheel_offset_z_from_base_link" value="-0.0" />
+    
+    <xacro:property name="wheel_radius" value="0.2" />
+    <xacro:property name="diff_z_offset" value="-0.12" />
     
     <macro name="tracker_chassis_macro">
     
@@ -101,25 +104,114 @@
      
         </link>
 
-	<tracked_wheel parent="base_link" prefix="left_0" offset_x= "0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="left_1" offset_x= "0.0" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link-0.01}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="left_2" offset_x= "-0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="left_3" offset_x= "0.10550" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="left_4" offset_x= "-0.10550" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="right_0" offset_x= "0.21100" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="right_1" offset_x= "0.0" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link-0.01}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="right_2" offset_x= "-0.21100" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="right_3" offset_x= "-0.10550" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
-		<tracked_wheel parent="base_link" prefix="right_4" offset_x= "0.10550" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
+	<!--<tracked_wheel parent="base_link" prefix="left_0" offset_x= "0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
+        <tracked_wheel parent="base_link" prefix="left_1" offset_x= "-0.1" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
+	<!--<tracked_wheel parent="base_link" prefix="left_2" offset_x= "-0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
+	<tracked_wheel parent="base_link" prefix="left_3" offset_x= "0.10" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
+	<!--<tracked_wheel parent="base_link" prefix="left_4" offset_x= "-0.10550" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
+	<!--<tracked_wheel parent="base_link" prefix="right_0" offset_x= "0.21100" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
+	<tracked_wheel parent="base_link" prefix="right_1" offset_x= "-0.1" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
+	<!--<tracked_wheel parent="base_link" prefix="right_2" offset_x= "-0.21100" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
+	<tracked_wheel parent="base_link" prefix="right_3" offset_x= "0.1" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
+	<!--<tracked_wheel parent="base_link" prefix="right_4" offset_x= "0.10550" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
 
+        
+ <!--   <joint name="caster_front_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="caster_front_link"/>
+      <origin xyz="0.265 0.0 ${0.01+wheel_offset_z_from_base_link}" rpy="${-M_PI/2} 0 0"/>
+    </joint>
+    
+    <link name="caster_front_link">
+      <collision>
+        <geometry>
+          <cylinder length="0.0176" radius="${wheel_radius_big}"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>      
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+    </link>
+    
+    <joint name="caster_back_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="caster_back_link"/>
+      <origin xyz="-0.265 0.0 ${0.01+wheel_offset_z_from_base_link}" rpy="${-M_PI/2} 0 0"/>
+    </joint>
+    <link name="caster_back_link">
+      <collision>
+        <geometry>
+          <cylinder length="0.0176" radius="${wheel_radius_big}"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>      
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+    </link>
+        
+          <gazebo reference="caster_front_link">
+            <mu1>0.0</mu1>
+            <mu2>0.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </gazebo>
+          
+          <gazebo reference="caster_back_link">
+            <mu1>0.0</mu1>
+            <mu2>0.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </gazebo>-->
+          
+          <gazebo reference="chassis_link">
+            <mu1>0.0</mu1>
+            <mu2>0.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </gazebo>
+          
+          <gazebo reference="flipper_link">
+            <mu1>0.0</mu1>
+            <mu2>0.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </gazebo>
+          
+          <gazebo reference="base_link">
+            <mu1>0.0</mu1>
+            <mu2>0.0</mu2>
+            <kp>1000000.0</kp>
+            <kd>100.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+          </gazebo>
+        
 
    <gazebo>
             
         <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">                
                 <alwaysOn>true</alwaysOn>
-                <updateRate>10.0</updateRate>
-                <leftJoints>left_0_wheel_joint left_1_wheel_joint left_2_wheel_joint left_3_wheel_joint left_4_wheel_joint</leftJoints>
-                <rightJoints>right_0_wheel_joint right_1_wheel_joint right_2_wheel_joint right_3_wheel_joint right_4_wheel_joint</rightJoints>
+                <updateRate>25.0</updateRate>
+                <leftJoints>left_1_wheel_joint  left_3_wheel_joint </leftJoints>
+                <rightJoints>right_1_wheel_joint right_3_wheel_joint</rightJoints>
                 <wheelSeparation>${wheel_offset_y*2}</wheelSeparation>
                 <wheelDiameter>${wheel_radius_big*2}</wheelDiameter>
                 <torque>50000</torque>

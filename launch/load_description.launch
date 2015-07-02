@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="robot_description" default="$(find xacro)/xacro.py $(find taurob_tracker_description)/urdf/tracker.urdf.xacro"/>
+  
+  <param name="robot_description" command="$(arg robot_description)" />
+  <param name="use_gui" value="False"/>
+</launch>

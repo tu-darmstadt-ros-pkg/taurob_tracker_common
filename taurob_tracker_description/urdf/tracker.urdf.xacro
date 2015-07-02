@@ -10,10 +10,12 @@
     <property name="M_PI" value="3.14159" />
     <property name="angle_deg" value="45" />
     
-    
     <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.urdf.xacro.xml" />
+    
+    <!--
     <xacro:include filename="$(find taurob_arm_description)/urdf/taurob_arm_collision_geoms_simple.urdf.xacro.xml" />
     <xacro:include filename="$(find taurob_arm_description)/urdf/taurob_arm.urdf.xacro.xml" />
+    -->
     
     <tracker_chassis_macro />    
     <taurob_arm_macro parent="base_link">

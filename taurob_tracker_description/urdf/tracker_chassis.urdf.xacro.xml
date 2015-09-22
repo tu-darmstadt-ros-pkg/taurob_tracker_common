@@ -4,9 +4,9 @@
   
     <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
     
-    <property name="base_size_x" value="${0.365*2}" />
-    <property name="base_size_y" value="0.24" />
-    <property name="base_size_z" value="0.312 " />
+    <property name="base_size_x" value="1.0" />
+    <property name="base_size_y" value="0.5" />
+    <property name="base_size_z" value="0.2 " />
     
     <property name="base_offset_x" value="-0.122" />
     <property name="base_offset_z" value="-0.05" />
@@ -58,8 +58,8 @@
 
    <link name="chassis_link">
 	    
-    <xacro:inertial_cuboid_with_pose mass="20" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >
-      <origin xyz="0.0 0.0 ${0.312*0.5}" rpy="0 0 0" />
+    <xacro:inertial_cuboid_with_pose mass="30" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >
+      <origin xyz="${base_offset_x} 0.0 -0.05" rpy="0 0 0" />
     </xacro:inertial_cuboid_with_pose>
             <visual>
                 <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
@@ -78,15 +78,41 @@
 	    <collision>
               <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
               <geometry>
-                <box size="1.0 0.13 0.35"/>
+                <box size="${1.0-0.35} 0.13 0.35"/>
               </geometry>
 	    </collision>
 	    <collision>
               <origin xyz="${base_offset_x} 0.23 ${base_offset_z}" rpy="0 0 0"/>
               <geometry>
-                <box size="1.0 0.13 0.35"/>
+                <box size="${1.0-0.35} 0.13 0.35"/>
               </geometry>
-	    </collision>
+            </collision>
+            
+            <collision>
+              <origin xyz="${base_offset_x+0.5-0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+              <geometry>
+                <cylinder radius="0.175" length="0.13" />
+              </geometry>
+            </collision>
+            <collision>
+              <origin xyz="${base_offset_x-0.5+0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+              <geometry>
+                <cylinder radius="0.175" length="0.13" />
+              </geometry>
+            </collision>        
+
+            <collision>
+              <origin xyz="${base_offset_x+0.5-0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+              <geometry>
+                <cylinder radius="0.175" length="0.13" />
+              </geometry>
+            </collision>
+            <collision>
+              <origin xyz="${base_offset_x-0.5+0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+              <geometry>
+                <cylinder radius="0.175" length="0.13" />
+              </geometry>
+            </collision>                    
      
         </link>
 

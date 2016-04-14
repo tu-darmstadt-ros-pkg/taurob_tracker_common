@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>taurob_arm_description</name>
+  <version>0.0.0</version>
+  <description>The taurob_arm_description package</description>
+
+  <maintainer email="kohlbrecher@sim.tu-darmstadt.de">Stefan Kohlbrecher</maintainer>
+
+  <author email="kohlbrecher@sim.tu-darmstadt.de">Stefan Kohlbrecher</author>
+
+  <license>TODO</license>
+
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>

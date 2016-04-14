@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<robot
+  xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+<macro name="arm_link_0_collision_geom_marco">
+            <collision>
+                <origin xyz="0.0 0.0 ${0.137*0.5}" rpy="0 0 0" />
+                <geometry>
+                  <box size="0.08 0.08 0.137" />
+                </geometry>
+            </collision>
+</macro>  
+
+<macro name="arm_link_1_collision_geom_marco">
+            <collision>
+                <origin xyz="-0.045 0.18 0.0" rpy="0 0 0" />
+                <geometry>
+                  <box size="0.073 0.4 0.086" />
+                </geometry>
+            </collision>
+</macro>  
+
+<macro name="arm_link_2_collision_geom_marco">
+            <collision>
+                <origin xyz="${-0.073*0.5} 0.28 0.0" rpy="0 0 0" />
+                <geometry>
+                  <box size="0.073 0.6 0.086" />
+                </geometry>
+            </collision>
+</macro>  
+
+<macro name="arm_link_3_collision_geom_marco">
+            <collision>
+                <origin xyz="0.1 0.05 0.08" rpy="0 0 0" />
+                <geometry>
+                  <box size="0.1 0.2 0.18" />
+                </geometry>
+            </collision>
+</macro>  
+
+  
+</robot>

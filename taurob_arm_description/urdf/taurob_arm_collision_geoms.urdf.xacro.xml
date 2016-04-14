@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<robot
+  xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+<macro name="arm_link_0_collision_geom_marco">
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://taurob_arm_description/meshes/tarm_link_0.stl"/>
+                </geometry>
+            </collision>
+</macro>  
+
+<macro name="arm_link_1_collision_geom_marco">
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://taurob_arm_description/meshes/tarm_link_1.stl"/>
+                </geometry>
+            </collision>
+</macro>  
+
+<macro name="arm_link_2_collision_geom_marco">
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://taurob_arm_description/meshes/tarm_link_2.stl"/>
+                </geometry>
+            </collision>
+</macro>  
+
+<macro name="arm_link_3_collision_geom_marco">
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://taurob_arm_description/meshes/tarm_link_3.stl"/>
+                </geometry>
+            </collision>
+</macro>  
+
+  
+</robot>

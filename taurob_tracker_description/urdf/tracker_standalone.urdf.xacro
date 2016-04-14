@@ -12,7 +12,7 @@
     
     <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.urdf.xacro.xml" />
    
-    <tracker_chassis_macro />
+    <xacro:tracker_chassis_macro />
     
     <!--Examples of adding additional robot parts below--> 
     <!--

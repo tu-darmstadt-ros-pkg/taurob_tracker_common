@@ -55,6 +55,12 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <rpyOffsets>0 0 0</rpyOffsets>
     </plugin>
     
+    <!-- ros_control plugin -->
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>tracker_controllers</robotNamespace>-->
+    </plugin>
+
+    
   </gazebo>
   
 

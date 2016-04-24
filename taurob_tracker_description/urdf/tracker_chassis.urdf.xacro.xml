@@ -65,65 +65,62 @@
     <link name="chassis_link">
       
       <xacro:inertial_cuboid_with_pose mass="30" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >
-	<origin xyz="${base_offset_x} 0.0 -0.05" rpy="0 0 0" />
+        <origin xyz="${base_offset_x} 0.0 -0.05" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>
+      
       <visual>
-	<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-	<geometry>
-	  <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis.dae"/>
-	</geometry>
-	
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis.dae"/>
+        </geometry>
       </visual>
       
       <collision>
-	<origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z}" rpy="0 0 0"/>
-	<geometry>
-	  <box size="0.74 0.5 0.2"/>
-	</geometry>
+        <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.74 0.5 0.2"/>
+        </geometry>
       </collision>
       <collision>
-	<origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
-	<geometry>
-	  <box size="${1.0-0.35} 0.13 0.35"/>
-	</geometry>
+        <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${1.0-0.35} 0.13 0.35"/>
+        </geometry>
       </collision>
       <collision>
-	<origin xyz="${base_offset_x} 0.23 ${base_offset_z}" rpy="0 0 0"/>
-	<geometry>
-	  <box size="${1.0-0.35} 0.13 0.35"/>
-	</geometry>
+        <origin xyz="${base_offset_x} 0.23 ${base_offset_z}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${1.0-0.35} 0.13 0.35"/>
+        </geometry>
       </collision>
       
       <collision>
-	<origin xyz="${base_offset_x+0.5-0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
-	<geometry>
-	  <cylinder radius="0.175" length="0.13" />
-	</geometry>
+        <origin xyz="${base_offset_x+0.5-0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <geometry>
+          <cylinder radius="0.175" length="0.13" />
+        </geometry>
       </collision>
       <collision>
-	<origin xyz="${base_offset_x-0.5+0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
-	<geometry>
-	  <cylinder radius="0.175" length="0.13" />
-	</geometry>
+        <origin xyz="${base_offset_x-0.5+0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <geometry>
+          <cylinder radius="0.175" length="0.13" />
+        </geometry>
       </collision>        
       
       <collision>
-	<origin xyz="${base_offset_x+0.5-0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
-	<geometry>
-	  <cylinder radius="0.175" length="0.13" />
-	</geometry>
+        <origin xyz="${base_offset_x+0.5-0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <geometry>
+          <cylinder radius="0.175" length="0.13" />
+        </geometry>
       </collision>
       <collision>
-	<origin xyz="${base_offset_x-0.5+0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
-	<geometry>
-	  <cylinder radius="0.175" length="0.13" />
-	</geometry>
+        <origin xyz="${base_offset_x-0.5+0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <geometry>
+          <cylinder radius="0.175" length="0.13" />
+        </geometry>
       </collision>                    
-      
     </link>
     
-    
   </macro>
-  
   
 </robot>

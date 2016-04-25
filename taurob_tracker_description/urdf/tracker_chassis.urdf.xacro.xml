@@ -75,12 +75,15 @@
         </geometry>
       </visual>
       
+      <!--Chassis middle-->
       <collision>
-        <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z}" rpy="0 0 0"/>
+        <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z-0.025}" rpy="0 0 0"/>
         <geometry>
-          <box size="0.74 0.5 0.2"/>
+          <box size="0.74 0.5 0.15"/>
         </geometry>
       </collision>
+      
+      <!--Left/right track box geoms-->
       <collision>
         <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
         <geometry>
@@ -94,6 +97,7 @@
         </geometry>
       </collision>
       
+      <!--Left track cylinder (front/back) geoms-->      
       <collision>
         <origin xyz="${base_offset_x+0.5-0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
@@ -107,6 +111,7 @@
         </geometry>
       </collision>        
       
+      <!--Right track cylinder (front/back) geoms-->      
       <collision>
         <origin xyz="${base_offset_x+0.5-0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>

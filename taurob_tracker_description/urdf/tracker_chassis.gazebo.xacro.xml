@@ -59,7 +59,6 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>tracker_controllers</robotNamespace>-->
     </plugin>
-
     
   </gazebo>
   
@@ -92,7 +91,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <odometryFrame>odom</odometryFrame>
         <odometryRate>20.0</odometryRate>
         <robotBaseFrame>base_link</robotBaseFrame>
-        <publishOdometryTf>0</publishOdometryTf>
+        <publishOdometryTf>1</publishOdometryTf>
       </plugin>
     </gazebo>    
   </macro>  

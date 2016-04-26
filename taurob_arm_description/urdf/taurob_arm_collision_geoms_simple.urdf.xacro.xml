@@ -30,11 +30,20 @@
     </collision>
   </macro>  
   
-  <macro name="arm_link_3_collision_geom_marco">
+  <macro name="arm_link_3_collision_geom_simple_eef__marco">
     <collision>
       <origin xyz="0.045 ${-0.208*0.5 + 0.03919} 0.0" rpy="0 0 0" />
       <geometry>
         <box size="0.07 ${0.208} 0.091" />
+      </geometry>
+    </collision>
+  </macro>  
+  
+  <macro name="arm_link_3_collision_geom_gripper_marco">
+    <collision>
+      <origin xyz="0.04 ${0.1518*0.5 - 0.03233} 0.0225" rpy="0 0 0" />
+      <geometry>
+        <box size="0.07893 ${0.1518} 0.09334" />
       </geometry>
     </collision>
   </macro>  

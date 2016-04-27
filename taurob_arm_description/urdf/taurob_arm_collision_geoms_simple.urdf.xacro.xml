@@ -61,6 +61,15 @@
         <box size="0.07893 ${0.1518} 0.09334" />
       </geometry>
     </collision>
-  </macro>  
+  </macro>
+
+  <macro name="arm_link_4_collision_geom_gripper_marco">
+    <collision>
+      <origin xyz="-0.04 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.06 ${0.16} 0.04" />
+      </geometry>
+    </collision>
+  </macro>    
   
 </robot>

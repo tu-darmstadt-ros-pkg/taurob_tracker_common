@@ -279,7 +279,9 @@
         <material name="DarkGrey">
           <color rgba="0.3 0.3 0.3 1"/>
         </material>                
-      </visual>        
+      </visual>
+      
+      <arm_link_4_collision_geom_gripper_marco/>
     </link>   
     
     

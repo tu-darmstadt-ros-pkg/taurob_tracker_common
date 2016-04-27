@@ -4,10 +4,25 @@
   xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
   
   <macro name="arm_link_0_collision_geom_marco">
+    <!--Lower block-->
     <collision>
-      <origin xyz="0.0 0.0 ${0.17651*0.5+ 0.001}" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 ${0.075*0.5+ 0.01}" rpy="0 0 0" />
       <geometry>
-        <box size="${0.0475*2} ${0.038*2} 0.17651" />
+        <box size="${0.042*2} ${0.042*2} 0.0758" />
+      </geometry>
+    </collision>
+    <!--Rounded part-->
+    <collision>
+      <origin xyz="-0.02 0 0.11" rpy="${M_PI*0.5} 0 ${M_PI*0.5}"/>
+      <geometry>
+        <cylinder radius="0.042" length="0.043" />
+      </geometry>
+    </collision>
+    <!--Angled block-->
+    <collision>
+      <origin xyz="0.0 0.0 ${0.10}" rpy="0 ${M_PI*-0.18} 0" />
+      <geometry>
+        <box size="${0.026*2} ${0.030*2} 0.06" />
       </geometry>
     </collision>
   </macro>  

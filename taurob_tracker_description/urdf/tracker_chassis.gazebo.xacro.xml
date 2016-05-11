@@ -91,6 +91,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <odometryFrame>odom</odometryFrame>
         <odometryRate>20.0</odometryRate>
         <robotBaseFrame>base_link</robotBaseFrame>
+        <yaw_velocity_p_gain>250</yaw_velocity_p_gain>
         <publishOdometryTf>1</publishOdometryTf>
       </plugin>
     </gazebo>    

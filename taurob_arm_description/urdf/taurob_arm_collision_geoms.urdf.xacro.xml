@@ -38,5 +38,23 @@
       </geometry>
     </collision>
   </macro>
+
+  <macro name="arm_link_4_collision_geom_marco">
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://taurob_arm_description/meshes/tarm_link_4.stl"/>
+      </geometry>
+    </collision>
+  </macro>
+
+  <macro name="gripper_link_1_collision_geom_marco">
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://taurob_arm_description/meshes/tgripper_link_1.stl"/>
+      </geometry>
+    </collision>
+  </macro>
   
 </robot>

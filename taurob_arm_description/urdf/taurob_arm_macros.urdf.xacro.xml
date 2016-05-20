@@ -214,7 +214,7 @@
       
     
     <joint name="arm_joint_3" type="revolute">    
-      <origin xyz="0.096 -0.42 0" rpy=" 0 0 0"/>
+      <origin xyz="0.096 -0.42 0" rpy=" 0 0 ${-90 * M_PI / 180}"/>
       <axis xyz="-1 0 0"/>
       <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -239,7 +239,7 @@
         </geometry>
         -->
         
-        <origin xyz="0.04 ${0.1518*0.5 - 0.03233} 0.0225" rpy="0 0 0" />
+        <origin xyz="0.04 ${0.1518*0.5 - 0.03233} 0.0225" rpy="0 0 ${90 * M_PI / 180}" />
         <geometry>
           <box size="0.07893 ${0.1518} 0.09334" />
         </geometry>
@@ -253,7 +253,7 @@
     </link>        
     
     <joint name="arm_joint_4" type="continuous">    
-      <origin xyz="0.04054 -0.16317 0.04882" rpy=" 0 0 ${-M_PI*0.5}"/>
+      <origin xyz="0.04054 -0.16317 0.04882" rpy=" 0 0 0"/>
       <axis xyz="-1 0 0"/>
       <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"

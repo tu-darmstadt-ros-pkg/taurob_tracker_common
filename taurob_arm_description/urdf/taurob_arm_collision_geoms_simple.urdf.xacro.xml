@@ -56,10 +56,10 @@
   
   <macro name="arm_link_3_collision_geom_gripper_marco">
     <collision>
-      <origin xyz="0.04 ${0.1518*0.5 - 0.03233} 0.0225" rpy="0 0 0" />
-      <geometry>
-        <box size="0.07893 ${0.1518} 0.09334" />
-      </geometry>
+        <origin xyz=" ${-0.1518*0.5 + 0.03233} 0.04 0.0225" rpy="0 0 0" />
+        <geometry>
+          <box size=" ${0.1518} 0.07893 0.09334" />
+        </geometry>
     </collision>
   </macro>
 

@@ -72,6 +72,8 @@
     </collision>
   </macro> 
 
+
+  <!--
   <macro name="arm_link_4_collision_geom_marco">
     <collision>
       <origin xyz="-0.04 0.0 0.0" rpy="0 0 0" />
@@ -81,6 +83,7 @@
     </collision>
   </macro> 
 
+  
   <macro name="gripper_link_1_collision_geom_marco">
     <collision>
       <origin xyz="-0.04 0.0 0.0" rpy="0 0 0" />
@@ -88,6 +91,15 @@
         <box size="0.06 ${0.16} 0.04" />
       </geometry>
     </collision>
-  </macro>    
+  </macro>  
+
+  <macro name="gripper_link_2_collision_geom_marco">
+    <collision>
+      <origin xyz="-0.04 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.06 ${0.16} 0.04" />
+      </geometry>
+    </collision>
+  </macro>  -->
   
 </robot>

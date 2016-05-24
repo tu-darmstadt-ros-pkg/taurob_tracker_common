@@ -397,7 +397,7 @@
     </link>   
 
     <joint name="gripper_joint_0" type="revolute">    
-      <origin xyz="-0.06 -0.02 0.035" rpy=" 0 0 -1.9"/>
+      <origin xyz="-0.07 -0.03 0.035" rpy=" 0 0 -1.9"/>
       <axis xyz="0 0 1"/>
       <limit lower="0" upper="1.89" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -461,7 +461,7 @@
 
     <!-- Mirror link from gripper start -->
     <joint name="gripper_joint_0_1" type="revolute">    
-      <origin xyz="-0.06 0.02 0.035" rpy=" 0 0 1.9"/>
+      <origin xyz="-0.07 0.03 0.035" rpy=" 0 0 1.9"/>
       <axis xyz="0 0 -1"/>
       <limit lower="0" upper="1.89" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
       <mimic joint="gripper_joint_0" />

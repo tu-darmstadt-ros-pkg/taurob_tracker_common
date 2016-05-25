@@ -388,8 +388,8 @@
           <!--<mesh filename="package://taurob_arm_description/meshes/gripper_geom.dae"/>-->
           <mesh filename="package://taurob_arm_description/meshes/tarm_link_4.stl"/>
         </geometry>
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
+        <material name="LightGrey">
+          <color rgba="0.5 0.5 0.5 1"/>
         </material>                
       </visual>
       
@@ -419,8 +419,8 @@
         <geometry>
           <mesh filename="package://taurob_arm_description/meshes/tgripper_link_1.stl"/>
         </geometry>
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
+        <material name="White">
+          <color rgba="1 1 1 1"/>
         </material>                
       </visual>
       
@@ -451,8 +451,8 @@
         <geometry>
           <mesh filename="package://taurob_arm_description/meshes/tgripper_link_2.stl"/>
         </geometry>
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
+        <material name="LightGrey">
+          <color rgba="0.5 0.5 0.5 1"/>
         </material>                
       </visual>
       
@@ -479,8 +479,8 @@
         <geometry>
           <mesh filename="package://taurob_arm_description/meshes/tgripper_link_1.stl"/>
         </geometry>
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
+        <material name="White">
+          <color rgba="1 1 1 1"/>
         </material>                
       </visual>
       
@@ -511,8 +511,8 @@
         <geometry>
           <mesh filename="package://taurob_arm_description/meshes/tgripper_link_2.stl"/>
         </geometry>
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
+        <material name="LightGrey">
+          <color rgba="0.5 0.5 0.5 1"/>
         </material>                
       </visual>
       
@@ -553,8 +553,31 @@
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission> 
-    
-    
+
+    <gazebo>
+        <plugin name="mimic_gripper_joint_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+            <joint>gripper_joint_0</joint>
+            <mimicJoint>gripper_joint_1</mimicJoint>
+            <multiplier>1.0</multiplier>
+            <offset>0.0</offset>
+            <!--hasPID-->  <!-- uncomment to use PID -->
+        </plugin>
+        <plugin name="mimic_gripper_joint_1_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+            <joint>gripper_joint_0</joint>
+            <mimicJoint>gripper_joint_1_1</mimicJoint>
+            <multiplier>1.0</multiplier>
+            <offset>0.0</offset>
+            <!--hasPID-->  <!-- uncomment to use PID -->
+        </plugin>
+        <plugin name="mimic_gripper_joint_0_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+            <joint>gripper_joint_0</joint>
+            <mimicJoint>gripper_joint_0_1</mimicJoint>
+            <multiplier>1.0</multiplier>
+            <offset>0.0</offset>
+            <!--hasPID-->  <!-- uncomment to use PID -->
+        </plugin>
+    </gazebo>
+
     <gazebo reference="arm_link_3">
       <material>Gazebo/Grey</material>
     </gazebo>
@@ -564,8 +587,26 @@
     </gazebo> 
 
     <gazebo reference="gripper_link_1">
-      <material>Gazebo/Grey</material>
+      <material>Gazebo/White</material>
     </gazebo>  
+
+    <gazebo reference="gripper_link_2">
+      <material>Gazebo/Grey</material>
+      <mu1>100</mu1>
+      <mu2>100</mu2>
+      <maxContacts>4</maxContacts>
+    </gazebo>
+
+    <gazebo reference="gripper_link_1_1">
+      <material>Gazebo/White</material>
+    </gazebo>  
+
+    <gazebo reference="gripper_link_2_1">
+      <material>Gazebo/Grey</material>
+      <mu1>100</mu1>
+      <mu2>100</mu2>
+      <maxContacts>4</maxContacts>
+    </gazebo>
     
   </macro>
 </robot>

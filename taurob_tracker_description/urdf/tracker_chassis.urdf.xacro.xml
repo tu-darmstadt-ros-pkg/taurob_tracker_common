@@ -9,9 +9,9 @@
   <property name="base_size_z" value="0.2 " />
   
   <property name="base_offset_x" value="-0.122" />
-  <property name="base_offset_z" value="-0.05" />
+  <property name="base_offset_z" value="-0.08" />
   
-  <property name="track_wheel_radius" value="0.175" />
+  <property name="track_wheel_radius" value="0.13" />
   
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />
   
@@ -79,7 +79,7 @@
       
       <!--Chassis middle-->
       <collision>
-        <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z-0.025}" rpy="0 0 0"/>
+        <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z+0.005}" rpy="0 0 0"/>
         <geometry>
           <box size="0.74 0.5 0.15"/>
         </geometry>

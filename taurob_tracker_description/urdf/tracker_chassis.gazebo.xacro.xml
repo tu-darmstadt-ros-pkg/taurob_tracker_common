@@ -16,10 +16,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
   
   <xacro:include filename="$(find hector_tracked_vehicles_description)/urdf/tracked_wheel.urdf.xacro" />
-    
-  <property name="base_offset_x" value="-0.122" />
-  <property name="base_offset_z" value="-0.05" />
-  
+     
   <property name="wheel_radius_big" value="0.085" />
   <property name="wheel_length" value="0.02" />
   <property name="wheel_size_y" value="0.02" /> 

@@ -11,6 +11,8 @@
   <property name="base_offset_x" value="-0.122" />
   <property name="base_offset_z" value="-0.05" />
   
+  <property name="track_wheel_radius" value="0.175" />
+  
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />
   
   <macro name="tracker_chassis_macro">
@@ -87,41 +89,41 @@
       <collision>
         <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
         <geometry>
-          <box size="${1.0-0.35} 0.13 0.35"/>
+          <box size="${1.0-track_wheel_radius*2} 0.13 ${track_wheel_radius*2}"/>
         </geometry>
       </collision>
       <collision>
         <origin xyz="${base_offset_x} 0.23 ${base_offset_z}" rpy="0 0 0"/>
         <geometry>
-          <box size="${1.0-0.35} 0.13 0.35"/>
+          <box size="${1.0-track_wheel_radius*2} 0.13 ${track_wheel_radius*2}"/>
         </geometry>
       </collision>
       
       <!--Left track cylinder (front/back) geoms-->      
       <collision>
-        <origin xyz="${base_offset_x+0.5-0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <origin xyz="${base_offset_x+0.5-track_wheel_radius} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
-          <cylinder radius="0.175" length="0.13" />
+          <cylinder radius="${track_wheel_radius}" length="0.13" />
         </geometry>
       </collision>
       <collision>
-        <origin xyz="${base_offset_x-0.5+0.175} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <origin xyz="${base_offset_x-0.5+track_wheel_radius} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
-          <cylinder radius="0.175" length="0.13" />
+          <cylinder radius="${track_wheel_radius}" length="0.13" />
         </geometry>
       </collision>        
       
       <!--Right track cylinder (front/back) geoms-->      
       <collision>
-        <origin xyz="${base_offset_x+0.5-0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <origin xyz="${base_offset_x+0.5-track_wheel_radius} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
-          <cylinder radius="0.175" length="0.13" />
+          <cylinder radius="${track_wheel_radius}" length="0.13" />
         </geometry>
       </collision>
       <collision>
-        <origin xyz="${base_offset_x-0.5+0.175} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
+        <origin xyz="${base_offset_x-0.5+track_wheel_radius} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
-          <cylinder radius="0.175" length="0.13" />
+          <cylinder radius="${track_wheel_radius}" length="0.13" />
         </geometry>
       </collision>                    
     </link>

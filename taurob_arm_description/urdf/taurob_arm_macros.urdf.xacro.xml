@@ -252,120 +252,8 @@
       <arm_link_3_collision_geom_gripper_marco/>
     </link>        
     
-    <joint name="arm_joint_4" type="continuous">    
+   <joint name="arm_joint_4" type="continuous">    
       <origin xyz="0.16317 0.04054 0.04882" rpy=" 0 0 0"/>
-      <axis xyz="-1 0 0"/>
-      <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
-      <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
-      soft_upper_limit="${168 * M_PI / 180}"
-      k_position="${100}"
-      k_velocity="${2}"/>-->
-      
-      <parent link="arm_link_3"/>
-      <child link="arm_link_4"/>
-    </joint>
-    
-    <link name="arm_link_4">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="0.05" y_length="${0.15}" z_length="0.05" >
-        <origin xyz="-0.05 0.0 0.0" rpy="0 0 0" />
-      </xacro:inertial_cuboid_with_pose> 
-      
-      <visual>
-        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-        <geometry>
-          <!--<mesh filename="package://taurob_arm_description/meshes/gripper_geom.dae"/>-->
-          <mesh filename="package://taurob_arm_description/meshes/gripper_model.dae"/>
-        </geometry>
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
-        </material>                
-      </visual>
-      
-      <arm_link_4_collision_geom_gripper_marco/>
-    </link>   
-    
-    
-    <transmission name="arm_joint_3_joint_transmssion">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="arm_joint_3">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-      </joint>        
-      <actuator name="arm_joint_3_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission>
-    
-    <transmission name="arm_joint_4_joint_transmssion">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="arm_joint_4">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-      </joint>        
-      <actuator name="arm_joint_4_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission> 
-    
-    
-    <gazebo reference="arm_link_3">
-      <material>Gazebo/Grey</material>
-    </gazebo>
-    
-    <gazebo reference="arm_link_4">
-      <material>Gazebo/Grey</material>
-    </gazebo>  
-    
-  </macro>
-
-  <macro name="taurob_arm_with_active_gripper_macro" params="parent *origin">
-    
-    <xacro:taurob_arm_base_macro parent="${parent}">  
-      <xacro:insert_block name="origin"/>
-    </xacro:taurob_arm_base_macro>  
-      
-    
-    <joint name="arm_joint_3" type="revolute">    
-      <origin xyz="0.096 -0.42 0" rpy=" 0 0 0"/>
-      <axis xyz="-1 0 0"/>
-      <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
-      <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
-      soft_upper_limit="${168 * M_PI / 180}"
-      k_position="${100}"
-      k_velocity="${2}"/>-->
-      
-      <parent link="arm_link_2"/>
-      <child link="arm_link_3"/>
-    </joint>
-    
-    <link name="arm_link_3">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="0.07893" y_length="${0.1518}" z_length="0.09334" >
-        <origin xyz="0.04 ${0.1518*0.5 - 0.03233} 0.0225" rpy="0 0 0" />
-      </xacro:inertial_cuboid_with_pose>
-      
-      <visual>
-        <!--       
-        <origin xyz="0.0 0.0 0.0" rpy="0 0 ${M_PI}"/>
-        <geometry>
-        <mesh filename="package://taurob_arm_description/meshes/claw_base_link.stl"/>
-        </geometry>
-        -->
-        
-        <origin xyz="0.04 ${0.1518*0.5 - 0.03233} 0.0225" rpy="0 0 0" />
-        <geometry>
-          <box size="0.07893 ${0.1518} 0.09334" />
-        </geometry>
-        
-        <material name="DarkGrey">
-          <color rgba="0.3 0.3 0.3 1"/>
-        </material>                
-      </visual>
-      
-      <arm_link_3_collision_geom_gripper_marco/>
-    </link>        
-    
-    <joint name="arm_joint_4" type="continuous">    
-      <origin xyz="0.04054 -0.16317 0.04882" rpy=" 0 0 ${-M_PI*0.5}"/>
       <axis xyz="-1 0 0"/>
       <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 110 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -609,4 +497,5 @@
     </gazebo>
     
   </macro>
+
 </robot>

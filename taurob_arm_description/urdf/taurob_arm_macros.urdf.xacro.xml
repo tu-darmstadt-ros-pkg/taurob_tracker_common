@@ -298,8 +298,8 @@
     </joint>
     
     <link name="gripper_link_1">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="0.05" y_length="${0.15}" z_length="0.05" >
-        <origin xyz="-0.05 0.0 0.0" rpy="0 0 0" />
+      <xacro:inertial_cuboid_with_pose mass="0.2" x_length="0.05" y_length="${0.05}" z_length="0.05" >
+        <origin xyz="-0.00 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose> 
       
       <visual>
@@ -330,8 +330,8 @@
     </joint>
     
     <link name="gripper_link_2">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="0.05" y_length="${0.15}" z_length="0.05" >
-        <origin xyz="-0.05 0.0 0.0" rpy="0 0 0" />
+      <xacro:inertial_cuboid_with_pose mass="0.2" x_length="0.05" y_length="${0.05}" z_length="0.05" >
+        <origin xyz="-0.00 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose> 
       
       <visual>
@@ -358,8 +358,8 @@
     </joint>
     
     <link name="gripper_link_1_1">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="0.05" y_length="${0.15}" z_length="0.05" >
-        <origin xyz="-0.05 0.0 0.0" rpy="0 0 0" />
+      <xacro:inertial_cuboid_with_pose mass="0.2" x_length="0.05" y_length="${0.05}" z_length="0.05" >
+        <origin xyz="-0.00 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose> 
       
       <visual>
@@ -390,8 +390,8 @@
     </joint>
     
     <link name="gripper_link_2_1">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="0.05" y_length="${0.15}" z_length="0.05" >
-        <origin xyz="-0.05 0.0 0.0" rpy="0 0 0" />
+      <xacro:inertial_cuboid_with_pose mass="0.2" x_length="0.05" y_length="${0.05}" z_length="0.05" >
+        <origin xyz="-0.0 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose> 
       
       <visual>
@@ -448,21 +448,24 @@
             <mimicJoint>gripper_joint_1</mimicJoint>
             <multiplier>1.0</multiplier>
             <offset>0.0</offset>
-            <!--hasPID-->  <!-- uncomment to use PID -->
+            <max_effort>1000</max_effort>
+            <hasPID/>
         </plugin>
         <plugin name="mimic_gripper_joint_1_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
             <joint>gripper_joint_0</joint>
             <mimicJoint>gripper_joint_1_1</mimicJoint>
             <multiplier>1.0</multiplier>
             <offset>0.0</offset>
-            <!--hasPID-->  <!-- uncomment to use PID -->
+            <max_effort>1000</max_effort>
+            <hasPID/>
         </plugin>
         <plugin name="mimic_gripper_joint_0_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
             <joint>gripper_joint_0</joint>
             <mimicJoint>gripper_joint_0_1</mimicJoint>
             <multiplier>1.0</multiplier>
             <offset>0.0</offset>
-            <!--hasPID-->  <!-- uncomment to use PID -->
+            <max_effort>1000</max_effort>
+            <hasPID/>
         </plugin>
     </gazebo>
 

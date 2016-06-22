@@ -147,7 +147,15 @@
     
     <gazebo reference="arm_link_2">
       <material>Gazebo/Grey</material>
-    </gazebo>  
+    </gazebo>
+    
+    <gazebo>
+      <!-- ros_control plugin -->
+      <plugin name="gazebo_ros_control_select_joints" filename="libgazebo_ros_control_select_joints.so">
+        <robotNamespace>arm_control</robotNamespace>
+        <joints>arm_joint_0 arm_joint_1 arm_joint_2 arm_joint_3</joints>
+      </plugin>
+    </gazebo>
     
   </macro>
   
@@ -498,6 +506,23 @@
       <mu2>100</mu2>
       <maxContacts>4</maxContacts>
     </gazebo>
+    
+    <gazebo>
+      <!-- ros_control plugin -->
+      <plugin name="gazebo_ros_control_select_joints" filename="libgazebo_ros_control_select_joints.so">
+        <robotNamespace>gripper_roll_control</robotNamespace>
+        <joints>arm_joint_4</joints>
+      </plugin>
+    </gazebo>
+    
+    <gazebo>
+      <!-- ros_control plugin -->
+      <plugin name="gazebo_ros_control_select_joints" filename="libgazebo_ros_control_select_joints.so">
+        <robotNamespace>gripper_grasp_control</robotNamespace>
+        <joints>gripper_joint_0 gripper_joint_1 gripper_joint_1_1 gripper_joint_0_1</joints>
+      </plugin>
+    </gazebo>
+    
     
   </macro>
 

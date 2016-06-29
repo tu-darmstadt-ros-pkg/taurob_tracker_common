@@ -1,82 +1,152 @@
 <?xml version="1.0"?>
 
 <robot name="taurob_tracker" xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" >
-  
+
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
-  
+
   <property name="base_size_x" value="1.0" />
   <property name="base_size_y" value="0.5" />
   <property name="base_size_z" value="0.2 " />
-  
+
   <property name="base_offset_x" value="-0.122" />
   <property name="base_offset_z" value="-0.08" />
-  
+
   <property name="track_wheel_radius" value="0.13" />
-  
+
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />
-  
+
   <macro name="tracker_chassis_macro">
-    
+
     <xacro:tracker_chassis_gazebo_force_based_move_macro />
-    
+
     <link name="base_link"/>
-    
+
     <joint name="chassis_joint" type="fixed">
       <origin xyz="${-base_offset_x} 0 0.18" rpy="0 0 0"/>
       <parent link="base_link"/>
       <child link="chassis_link"/>
     </joint>
-    
-    <!--
+
+
     <link name="flipper_link">
+      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="${0.0475*2}" y_length="${0.038*2}" z_length="0.17651" >
+  <origin xyz="0.0 0.0 ${0.17651*0.5+ 0.001}" rpy="0 0 0" />
+</xacro:inertial_cuboid_with_pose>    
     <origin xyz="0 0 0" rpy="0 0 0" />
-    
-    
-    <collision>
-    <origin xyz="0.5 -0.23 ${base_offset_z}" rpy="0 0 0"/>
+
+  <visual>
+    <origin xyz="0.77 -0.23 0.0" rpy="${M_PI/2} 0 0"/>
     <geometry>
-    <box size="1.05 0.14 0.35"/>
+      <cylinder length="0.14" radius="${track_wheel_radius}"/>
     </geometry>
-    </collision>
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+  </visual>
+
+    <visual>
+      <origin xyz="0.37 -0.23 0.0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${1.05-2*track_wheel_radius} 0.14 0.26"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+
+    <visual>
+      <origin xyz="0.77 0.23 0.0" rpy="${M_PI/2} 0 0"/>
+      <geometry>
+        <cylinder length="0.14" radius="${track_wheel_radius}"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+
+      <visual>
+        <origin xyz="0.37 0.23 0.0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${1.05-2*track_wheel_radius} 0.14 0.26"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+
+
     <collision>
-    <origin xyz="0.5 0.23 ${base_offset_z}" rpy="0 0 0"/>
-    <geometry>
-    <box size="1.05 0.14 0.35"/>
-    </geometry>
+      <origin xyz="0.77 -0.23 0.0" rpy="${M_PI/2} 0 0"/>
+      <geometry>
+        <cylinder length="0.14" radius="${track_wheel_radius}"/>
+      </geometry>
     </collision>
-    
+
+    <collision>
+      <origin xyz="0.37 -0.23 0.0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${1.05-2*track_wheel_radius} 0.14 0.26"/>
+      </geometry>
+    </collision>
+
+    <collision>
+      <origin xyz="0.77 0.23 0.0" rpy="${M_PI/2} 0 0"/>
+      <geometry>
+        <cylinder length="0.14" radius="${track_wheel_radius}"/>
+      </geometry>
+    </collision>
+
+    <collision>
+      <origin xyz="0.37 0.23 0.0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${1.05-2*track_wheel_radius} 0.14 0.26"/>
+      </geometry>
+    </collision>
+
     </link>
-    
-    <joint name="flipper_front" type="revolute"> 
-    <origin xyz="${base_offset_x-0.5} 0 0" rpy="0 0 0" />   
+
+
+    <joint name="flipper_joint_0" type="revolute">
+    <origin xyz="${base_offset_x-0.37} 0 -0.08" rpy="0 0 0" />
     <axis xyz="0 -1 0"/>
-    
+
     <limit lower="${-30 * M_PI / 180}" upper="${50 * M_PI / 180}"
     effort="204" velocity="${1.0 * 110 * M_PI / 180}" />
     <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
     soft_upper_limit="${45 * M_PI / 180}"
     k_position="${100}"
     k_velocity="${2}"/>
-    
+
     <parent link="chassis_link"/>
     <child link="flipper_link"/>
     </joint>
-    -->
-    
-    
+
+
+    <!--Needed for simulation-->
+    <transmission name="flipper_joint_0_joint_transmssion">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="flipper_joint_0">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="flipper_joint_0_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
     <link name="chassis_link">
-      
+
       <xacro:inertial_cuboid_with_pose mass="30" x_length="${base_size_x}" y_length="${base_size_y}" z_length="${base_size_z}" >
         <origin xyz="${base_offset_x} 0.0 -0.05" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>
-      
+
       <visual>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis.dae"/>
         </geometry>
       </visual>
-      
+
       <!--Chassis middle-->
       <collision>
         <origin xyz="${base_offset_x-0.11} 0.0 ${base_offset_z+0.005}" rpy="0 0 0"/>
@@ -84,7 +154,7 @@
           <box size="0.74 0.5 0.15"/>
         </geometry>
       </collision>
-      
+
       <!--Left/right track box geoms-->
       <collision>
         <origin xyz="${base_offset_x} -0.23 ${base_offset_z}" rpy="0 0 0"/>
@@ -98,8 +168,8 @@
           <box size="${1.0-track_wheel_radius*2} 0.13 ${track_wheel_radius*2}"/>
         </geometry>
       </collision>
-      
-      <!--Left track cylinder (front/back) geoms-->      
+
+      <!--Left track cylinder (front/back) geoms-->
       <collision>
         <origin xyz="${base_offset_x+0.5-track_wheel_radius} 0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
@@ -111,9 +181,9 @@
         <geometry>
           <cylinder radius="${track_wheel_radius}" length="0.13" />
         </geometry>
-      </collision>        
-      
-      <!--Right track cylinder (front/back) geoms-->      
+      </collision>
+
+      <!--Right track cylinder (front/back) geoms-->
       <collision>
         <origin xyz="${base_offset_x+0.5-track_wheel_radius} -0.23 ${base_offset_z}" rpy="${M_PI*0.5} 0 0"/>
         <geometry>
@@ -125,9 +195,9 @@
         <geometry>
           <cylinder radius="${track_wheel_radius}" length="0.13" />
         </geometry>
-      </collision>                    
+      </collision>
     </link>
-    
+
   </macro>
-  
+
 </robot>

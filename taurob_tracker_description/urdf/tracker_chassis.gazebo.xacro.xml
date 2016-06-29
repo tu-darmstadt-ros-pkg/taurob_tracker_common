@@ -8,26 +8,26 @@ Two options available:
 See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some further info
 -->
 
-<robot name="taurob_tracker" 
-       xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+<robot name="taurob_tracker"
+       xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
-  
+
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
-  
+
   <xacro:include filename="$(find hector_tracked_vehicles_description)/urdf/tracked_wheel.urdf.xacro" />
-     
+
   <property name="wheel_radius_big" value="0.085" />
   <property name="wheel_length" value="0.02" />
-  <property name="wheel_size_y" value="0.02" /> 
+  <property name="wheel_size_y" value="0.02" />
   <property name="wheel_offset_y" value="0.25" />
   <property name="wheel_offset_z_from_base_link" value="-0.0" />
-  
+
   <xacro:property name="wheel_radius" value="0.2" />
   <xacro:property name="diff_z_offset" value="-0.12" />
-  
+
   <gazebo>
-    
+
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
       <updateRate>50.0</updateRate>
@@ -40,7 +40,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <headingDrift>0.0</headingDrift>
       <headingGaussianNoise>0.05</headingGaussianNoise>
     </plugin>
-    
+
     <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
       <updateRate>50.0</updateRate>
@@ -51,18 +51,24 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
     </plugin>
-    
+
     <!-- ros_control plugin -->
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>tracker_controllers</robotNamespace>
     </plugin>
-    
-  </gazebo>
-  
 
-  
+    <!-- ros_control plugin -->
+    <plugin name="gazebo_ros_control_select_joints" filename="libgazebo_ros_control_select_joints.so">
+      <robotNamespace>flipper_control</robotNamespace>
+      <joints>flipper_joint_0</joints>
+    </plugin>
+
+  </gazebo>
+
+
+
   <macro name="tracker_chassis_gazebo_force_based_move_macro">
-    
+
     <gazebo reference="chassis_link">
       <mu1>0.0</mu1>
       <mu2>0.0</mu2>
@@ -70,8 +76,8 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <kd>100.0</kd>
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>
-    </gazebo>    
-    
+    </gazebo>
+
     <gazebo reference="base_link">
       <mu1>0.0</mu1>
       <mu2>0.0</mu2>
@@ -79,8 +85,8 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <kd>100.0</kd>
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>
-    </gazebo>    
-    
+    </gazebo>
+
     <gazebo>
       <plugin name="force_based_move_controller" filename="libgazebo_ros_force_based_move.so">
         <commandTopic>/cmd_vel_raw</commandTopic>
@@ -91,11 +97,11 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <yaw_velocity_p_gain>250</yaw_velocity_p_gain>
         <publishOdometryTf>1</publishOdometryTf>
       </plugin>
-    </gazebo>    
-  </macro>  
-  
-  <macro name="tracker_chassis_gazebo_fake_wheels_macro">    
-    
+    </gazebo>
+  </macro>
+
+  <macro name="tracker_chassis_gazebo_fake_wheels_macro">
+
     <!--<tracked_wheel parent="base_link" prefix="left_0" offset_x= "0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
     <tracked_wheel parent="base_link" prefix="left_1" offset_x= "-0.1" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
     <!--<tracked_wheel parent="base_link" prefix="left_2" offset_x= "-0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
@@ -106,7 +112,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
     <!--<tracked_wheel parent="base_link" prefix="right_2" offset_x= "-0.21100" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
     <tracked_wheel parent="base_link" prefix="right_3" offset_x= "0.1" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
     <!--<tracked_wheel parent="base_link" prefix="right_4" offset_x= "0.10550" offset_y = "-${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
-    
+
     <gazebo reference="flipper_link">
       <mu1>0.0</mu1>
       <mu2>0.0</mu2>
@@ -115,7 +121,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>
     </gazebo>
-    
+
     <gazebo reference="base_link">
       <mu1>0.0</mu1>
       <mu2>0.0</mu2>
@@ -124,10 +130,10 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>
     </gazebo>
-    
-    
-    <gazebo>      
-      <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">                
+
+
+    <gazebo>
+      <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>25.0</updateRate>
         <leftJoints>left_1_wheel_joint  left_3_wheel_joint </leftJoints>
@@ -142,7 +148,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <publishOdometryTf>0</publishOdometryTf>
         <publishOdometryMsg>1</publishOdometryMsg>
       </plugin>
-    </gazebo>    
-  </macro>  
-  
+    </gazebo>
+  </macro>
+
 </robot>

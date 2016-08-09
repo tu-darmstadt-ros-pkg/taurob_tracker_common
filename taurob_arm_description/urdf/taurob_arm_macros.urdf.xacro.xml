@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <robot     xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
   
-  <property name="base_size_x" value="0.92"/>
-  <property name="base_size_y" value="0.24"/>
-  <property name="base_size_z" value="0.34"/>
   <property name="M_PI" value="3.14159265359"/>
   
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />  
@@ -456,7 +453,7 @@
             <mimicJoint>gripper_joint_1</mimicJoint>
             <multiplier>1.0</multiplier>
             <offset>0.0</offset>
-            <max_effort>1000</max_effort>
+            <maxEffort>10</maxEffort>
             <hasPID/>
         </plugin>
         <plugin name="mimic_gripper_joint_1_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
@@ -464,7 +461,7 @@
             <mimicJoint>gripper_joint_1_1</mimicJoint>
             <multiplier>1.0</multiplier>
             <offset>0.0</offset>
-            <max_effort>1000</max_effort>
+            <maxEffort>10</maxEffort>
             <hasPID/>
         </plugin>
         <plugin name="mimic_gripper_joint_0_1" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
@@ -472,7 +469,7 @@
             <mimicJoint>gripper_joint_0_1</mimicJoint>
             <multiplier>1.0</multiplier>
             <offset>0.0</offset>
-            <max_effort>1000</max_effort>
+            <maxEffort>10</maxEffort>
             <hasPID/>
         </plugin>
     </gazebo>

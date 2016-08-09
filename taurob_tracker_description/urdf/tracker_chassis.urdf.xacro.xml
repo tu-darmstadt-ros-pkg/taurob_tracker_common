@@ -12,6 +12,8 @@
   <property name="tracker_base_offset_z" value="-0.08" />
   
   <property name="flipper_offset_x" value="-0.051" />
+  <property name="flipper_upper_shortening_x" value="0.05" />
+  
   
   
   <!-- width overall is 0.58 ->  (0.58 - 0.0925)/2 = 0.24375 -->
@@ -46,7 +48,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       
       <visual>
-        <origin xyz="${tracker_base_size_x-2*track_wheel_radius} -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="${tracker_base_size_x-2*track_wheel_radius-flipper_upper_shortening_x} -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
@@ -66,9 +68,9 @@
       </visual>
       
       <visual>
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius} -${track_offset_y} 0.0" rpy="0 0 0"/>
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius-flipper_upper_shortening_x*0.5} -${track_offset_y} 0.0" rpy="0 0 0"/>
         <geometry>
-          <box size="${tracker_base_size_x-2*track_wheel_radius} ${track_width} ${track_wheel_radius*2}"/>
+          <box size="${tracker_base_size_x-2*track_wheel_radius-flipper_upper_shortening_x} ${track_width} ${track_wheel_radius*2}"/>
         </geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>
@@ -76,7 +78,7 @@
       </visual>
       
       <visual>
-        <origin xyz="${tracker_base_size_x-2*track_wheel_radius} ${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="${tracker_base_size_x-2*track_wheel_radius-flipper_upper_shortening_x} ${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
@@ -96,9 +98,9 @@
       </visual>
       
       <visual>
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius} ${track_offset_y} 0.0" rpy="0 0 0"/>
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius-flipper_upper_shortening_x*0.5} ${track_offset_y} 0.0" rpy="0 0 0"/>
         <geometry>
-          <box size="${tracker_base_size_x-2*track_wheel_radius} ${track_width} ${track_wheel_radius*2}"/>
+          <box size="${tracker_base_size_x-2*track_wheel_radius-flipper_upper_shortening_x} ${track_width} ${track_wheel_radius*2}"/>
         </geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>
@@ -152,7 +154,7 @@
     <joint name="flipper_joint_0" type="revolute">
       <origin xyz="${tracker_base_offset_x-(tracker_base_size_x*0.5-track_wheel_radius)} 0 ${track_offset_z}" rpy="0 0 0" />
       <axis xyz="0 -1 0"/>
-      <mimic joint="flipper_joint_1" multiplier="0.5"/>
+      <mimic joint="flipper_joint_1" multiplier="0.46"/>
       
       <limit lower="${-170 * M_PI / 180}" upper="${180 * M_PI / 180}"
              effort="10000" velocity="${10.0 * 360 * M_PI / 180}" />

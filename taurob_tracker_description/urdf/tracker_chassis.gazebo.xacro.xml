@@ -71,7 +71,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <plugin name="mimic_flipper_joint_0" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
             <joint>flipper_joint_1</joint>
             <mimicJoint>flipper_joint_0</mimicJoint>
-            <multiplier>0.5</multiplier>
+            <multiplier>0.46</multiplier>
             <offset>0.0</offset>
             <maxEffort>10000</maxEffort>
             <hasPID/>

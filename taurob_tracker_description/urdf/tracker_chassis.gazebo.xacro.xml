@@ -60,12 +60,24 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
     <!-- ros_control plugin -->
     <plugin name="gazebo_ros_control_select_joints" filename="libgazebo_ros_control_select_joints.so">
       <robotNamespace>flipper_control</robotNamespace>
-      <joints>flipper_joint_0</joints>
+      <joints>flipper_joint_1</joints>
     </plugin>
 
   </gazebo>
-
-
+  
+  
+  <macro name="tracker_flipper_move_gazebo_macro">
+      <gazebo>
+        <plugin name="mimic_flipper_joint_0" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+            <joint>flipper_joint_1</joint>
+            <mimicJoint>flipper_joint_0</mimicJoint>
+            <multiplier>0.5</multiplier>
+            <offset>0.0</offset>
+            <maxEffort>10000</maxEffort>
+            <hasPID/>
+        </plugin>
+    </gazebo>
+  </macro>
 
   <macro name="tracker_chassis_gazebo_force_based_move_macro">
 
@@ -76,6 +88,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <kd>100.0</kd>
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>
+      <!--<material>Gazebo/Grey</material>-->
     </gazebo>
 
     <gazebo reference="base_link">
@@ -86,6 +99,27 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>
     </gazebo>
+    
+    <gazebo reference="flipper_link_0">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="flipper_link_1">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
 
     <gazebo>
       <plugin name="force_based_move_controller" filename="libgazebo_ros_force_based_move.so">

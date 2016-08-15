@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:include filename="$(find hector_sensors_description)/urdf/generic_camera.urdf.xacro"/>
+   
+  <xacro:macro name="tracker_chassis_cameras_macro">
+    
+    <xacro:generic_camera name="front_chassis_cam" parent="base_link" ros_topic="image_raw" cam_info_topic="camera_info" update_rate="10" res_x="640" res_y="480" image_format="R8G8B8" hfov="120">
+      <origin xyz="${0.1+0.122} 0.0 0.11" rpy="0 0 0"/>
+    </xacro:generic_camera>
+    
+    <xacro:generic_camera name="rear_chassis_cam" parent="base_link" ros_topic="image_raw" cam_info_topic="camera_info" update_rate="10" res_x="640" res_y="480" image_format="R8G8B8" hfov="120">
+      <origin xyz="${-0.59+0.122} 0.0 0.11" rpy="0 0 ${M_PI}"/>
+    </xacro:generic_camera>
+    
+  </xacro:macro>
+  
+</robot>

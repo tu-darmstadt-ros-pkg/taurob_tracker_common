@@ -21,7 +21,7 @@
   <!--Below pending clarification-->
   <property name="track_offset_z" value="-0.09" /> 
   
-  <property name="track_wheel_radius" value="0.13" />
+  <property name="track_wheel_radius" value="0.15" />
   <property name="track_width" value="0.0925" />
   
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />
@@ -182,7 +182,7 @@
     
     
     <link name="flipper_link_1">
-      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
+      <xacro:inertial_cuboid_with_pose mass="0.1" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
         <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius} 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>    
       <origin xyz="0 0 0" rpy="0 0 0" />

@@ -330,7 +330,7 @@
       <visual>
         <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} -${track_offset_y} ${track_offset_z}" rpy="0 0 0"/>
         <geometry>
-          <box size="${tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
+          <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis_sides.dae"/>
         </geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>
@@ -339,7 +339,7 @@
       <visual>
         <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} ${track_offset_y} ${track_offset_z}" rpy="0 0 0"/>
         <geometry>
-          <box size="${tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
+          <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis_sides.dae"/>
         </geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>

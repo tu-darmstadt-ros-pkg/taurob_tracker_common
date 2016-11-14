@@ -15,7 +15,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
 
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
 
-  <xacro:include filename="$(find hector_tracked_vehicles_description)/urdf/tracked_wheel.urdf.xacro" />
+  <!--  <xacro:include filename="$(find hector_tracked_vehicles_description)/urdf/tracked_wheel.urdf.xacro" />-->
 
   <property name="wheel_radius_big" value="0.085" />
   <property name="wheel_length" value="0.02" />
@@ -101,9 +101,9 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
     </gazebo>
     
     <gazebo reference="flipper_link_0">
-      <mu1>0.0</mu1>
-      <mu2>0.0</mu2>
-      <kp>1000000.0</kp>
+      <mu1>200.0</mu1>
+      <mu2>100.0</mu2>
+      <kp>500.0</kp>
       <kd>100.0</kd>
       <minDepth>0.001</minDepth>
       <maxVel>1.0</maxVel>

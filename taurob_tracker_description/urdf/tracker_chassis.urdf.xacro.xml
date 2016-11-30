@@ -153,7 +153,7 @@
     
     <joint name="flipper_joint_0" type="revolute">
       <origin xyz="${tracker_base_offset_x-(tracker_base_size_x*0.5-track_wheel_radius)} 0 ${track_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 -1 0"/>
+      <axis xyz="0 1 0"/>
       <mimic joint="flipper_joint_1" multiplier="0.46"/>
       
       <limit lower="${-170 * M_PI / 180}" upper="${180 * M_PI / 180}"
@@ -294,9 +294,9 @@
     
     <joint name="flipper_joint_1" type="revolute">
       <origin xyz="${tracker_base_offset_x-flipper_offset_x} 0 ${track_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 -1 0"/>
+      <axis xyz="0 1 0"/>
       
-      <limit lower="${-30 * M_PI / 180}" upper="${50 * M_PI / 180}"
+      <limit lower="${-50 * M_PI / 180}" upper="${30 * M_PI / 180}"
              effort="10000" velocity="${1.0 * 110 * M_PI / 180}" />
 <!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
                          soft_upper_limit="${45 * M_PI / 180}"

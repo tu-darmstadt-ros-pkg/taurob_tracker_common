@@ -3,10 +3,10 @@
   
   <property name="M_PI" value="3.14159265359"/>
   
-  <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />  
+  <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" /> 
   
-  <macro name="taurob_arm_base_macro" params="parent *origin">
-    
+  <!--Instantiates arm with 3 first joints without ros_control plugin-->
+  <macro name="taurob_arm_base_no_gazebo_ros_control_macro" params="parent *origin">    
     
     <joint name="arm_joint_0" type="revolute">    
       <insert_block name="origin"/>
@@ -145,6 +145,16 @@
     <gazebo reference="arm_link_2">
       <material>Gazebo/Grey</material>
     </gazebo>
+    
+  </macro>
+  
+  
+  <!--Instantiates arm with 3 first joints ros_control plugin for them-->
+  <macro name="taurob_arm_base_macro" params="parent *origin"> 
+    
+    <xacro:taurob_arm_base_no_gazebo_ros_control_macro parent="${parent}">
+       <xacro:insert_block name="origin" />
+    </xacro:taurob_arm_base_no_gazebo_ros_control_macro>
     
     <gazebo>
       <!-- ros_control plugin -->

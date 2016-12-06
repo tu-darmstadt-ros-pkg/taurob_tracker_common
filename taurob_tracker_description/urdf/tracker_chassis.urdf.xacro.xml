@@ -21,7 +21,7 @@
   <!--Below pending clarification-->
   <property name="track_offset_z" value="-0.09" /> 
   
-  <property name="track_wheel_radius" value="0.15" />
+  <property name="track_wheel_radius" value="0.13" />
   <property name="track_width" value="0.0925" />
   
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />

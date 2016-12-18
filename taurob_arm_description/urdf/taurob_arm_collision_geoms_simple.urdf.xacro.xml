@@ -6,30 +6,33 @@
   <macro name="arm_link_0_collision_geom_marco">
     <!--Lower block-->
     <collision>
-      <origin xyz="0.0 0.0 ${0.075*0.5+ 0.01}" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <box size="${0.042*2} ${0.042*2} 0.0758" />
+        <box size="0.1 0.1 0.08" />
       </geometry>
+      <material name="DarkGrey">
+        <color rgba="0.6 0.6 0.6 1"/>
+      </material>
     </collision>
     <!--Rounded part-->
     <collision>
-      <origin xyz="-0.02 0 0.11" rpy="${M_PI*0.5} 0 ${M_PI*0.5}"/>
+      <origin xyz="-0.0265 0 0.055" rpy="${M_PI*0.5} 0 ${M_PI*0.5}"/>
       <geometry>
-        <cylinder radius="0.042" length="0.043" />
+        <cylinder radius="0.048" length="0.043" />
       </geometry>
     </collision>
     <!--Angled block-->
     <collision>
-      <origin xyz="0.0 0.0 ${0.10}" rpy="0 ${M_PI*-0.18} 0" />
+      <origin xyz="0.02 0.0 0.06" rpy="0 ${M_PI*-0.18} 0" />
       <geometry>
-        <box size="${0.026*2} ${0.030*2} 0.06" />
-      </geometry>
+        <box size="0.01 0.1 0.1" />
+      </geometry>1#
     </collision>
   </macro>  
   
   <macro name="arm_link_1_collision_geom_marco">
     <collision>
-      <origin xyz="-0.055 ${0.651*0.5 -0.05}  0.0225" rpy="0 0 0" />
+      <origin xyz="-0.045 ${0.651*0.5 -0.05}  0.0225" rpy="0 0 0" />
       <geometry>
         <box size="${0.09} ${0.651}  0.136" />
       </geometry>
@@ -38,7 +41,7 @@
   
   <macro name="arm_link_2_collision_geom_marco">
     <collision>
-      <origin xyz="${0.047} ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
+      <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
       <geometry>
         <box size="0.073 ${0.5125} 0.086" />
       </geometry>

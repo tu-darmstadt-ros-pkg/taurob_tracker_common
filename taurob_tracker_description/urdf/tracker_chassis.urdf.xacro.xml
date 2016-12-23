@@ -182,8 +182,8 @@
     
     
     <link name="flipper_link_1">
-      <xacro:inertial_cuboid_with_pose mass="1.0" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius*2} 0.0 0.0" rpy="0 0 0" />
+      <xacro:inertial_cuboid_with_pose mass="10.0" x_length="${tracker_base_size_x*0.1}" y_length="${track_width*2}" z_length="0.17651" >
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius} 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>    
       <origin xyz="0 0 0" rpy="0 0 0" />
       
@@ -322,8 +322,8 @@
     
     <link name="chassis_link">
       
-      <xacro:inertial_cuboid_with_pose mass="30" x_length="${tracker_base_size_x*0.66}" y_length="${tracker_base_size_y}" z_length="${tracker_base_size_z}" >
-        <origin xyz="${-tracker_base_size_x*0.25} 0.0 -0.05" rpy="0 0 0" />
+      <xacro:inertial_cuboid_with_pose mass="30" x_length="${tracker_base_size_x*0.5}" y_length="${tracker_base_size_y}" z_length="${tracker_base_size_z}" >
+        <origin xyz="${-tracker_base_size_x*0.1} 0.0 -0.05" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>
       
       <!--Primitives with materials need to be used before .dae, otherwise material does not get applied-->

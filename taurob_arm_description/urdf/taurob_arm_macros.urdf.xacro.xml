@@ -3,7 +3,7 @@
   
   <property name="M_PI" value="3.14159265359"/>
   
-  <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" /> 
+  <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
   
   <!--Instantiates arm with 3 first joints without ros_control plugin-->
   <macro name="taurob_arm_base_no_gazebo_ros_control_macro" params="parent *origin">    
@@ -16,7 +16,6 @@
       soft_upper_limit="${168 * M_PI / 180}"
       k_position="${100}"
       k_velocity="${2}"/>-->
-      
       <parent link="${parent}"/>
       <child link="arm_link_0"/>
     </joint>
@@ -39,7 +38,7 @@
     </link>
     
     <joint name="arm_joint_1" type="revolute">    
-      <origin xyz="-0.067 0.0 0.06" rpy="0 0 0"/>
+      <origin xyz="-0.067 0.0 0.06" rpy="${arm_joint_1_offset} 0 0"/>
       <axis xyz="1 0 0"/>
       <limit lower="${0 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -70,14 +69,13 @@
     </link>
     
     <joint name="arm_joint_2" type="revolute">    
-      <origin xyz="0.022 0.551 0.0" rpy=" 0 0 0"/>
+      <origin xyz="0.022 0.551 0.0" rpy="${arm_joint_2_offset} 0 0"/>
       <axis xyz="-1 0 0"/>
       <limit lower="${0 * M_PI / 180}" upper="${175 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
       soft_upper_limit="${168 * M_PI / 180}"
       k_position="${100}"
       k_velocity="${2}"/>-->
-      
       <parent link="arm_link_1"/>
       <child link="arm_link_2"/>
     </joint>

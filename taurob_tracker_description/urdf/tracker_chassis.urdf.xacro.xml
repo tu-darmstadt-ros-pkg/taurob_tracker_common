@@ -297,7 +297,7 @@
       <axis xyz="0 1 0"/>
       
       <limit lower="${-50 * M_PI / 180}" upper="${30 * M_PI / 180}"
-             effort="10000" velocity="${1.0 * 110 * M_PI / 180}" />
+             effort="10000" velocity="${1.0 * 30 * M_PI / 180}" />
 <!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
                          soft_upper_limit="${45 * M_PI / 180}"
                          k_position="${100}"

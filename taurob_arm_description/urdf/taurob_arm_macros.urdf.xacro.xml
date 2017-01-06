@@ -38,6 +38,146 @@
     </link>
     
     <joint name="arm_joint_1" type="revolute">    
+      <origin xyz="-0.067 0.0 0.06" rpy="0 0 0"/>
+      <axis xyz="1 0 0"/>
+      <limit lower="${0 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
+      <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+      soft_upper_limit="${168 * M_PI / 180}"
+      k_position="${100}"
+      k_velocity="${2}"/>-->
+      
+      <parent link="arm_link_0"/>
+      <child link="arm_link_1"/>
+    </joint>
+    
+    <link name="arm_link_1">
+      <xacro:inertial_cuboid_with_pose mass="7.0" x_length="${0.09}" y_length="${0.651}" z_length="0.136" >
+        <origin xyz="-0.055 ${0.651*0.5 -0.05}  0.0225" rpy="0 0 0" />
+      </xacro:inertial_cuboid_with_pose> 
+      
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://taurob_arm_description/meshes/tarm_link_1.stl"/>
+        </geometry>
+        <material name="DarkGrey">
+          <color rgba="0.3 0.3 0.3 1"/>
+        </material>                
+      </visual>
+      
+      <arm_link_1_collision_geom_marco/>
+    </link>
+    
+    <joint name="arm_joint_2" type="revolute">    
+      <origin xyz="0.022 0.551 0.0" rpy="0 0 0"/>
+      <axis xyz="-1 0 0"/>
+      <limit lower="${0 * M_PI / 180}" upper="${175 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
+      <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+      soft_upper_limit="${168 * M_PI / 180}"
+      k_position="${100}"
+      k_velocity="${2}"/>-->
+      <parent link="arm_link_1"/>
+      <child link="arm_link_2"/>
+    </joint>
+    
+    <link name="arm_link_2">
+      <xacro:inertial_cuboid_with_pose mass="6.0" x_length="0.073" y_length="${0.5125}" z_length="0.086" >
+        <origin xyz="${0.047} ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
+      </xacro:inertial_cuboid_with_pose> 
+      
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://taurob_arm_description/meshes/tarm_link_2.stl"/>
+        </geometry>
+        <material name="DarkGrey">
+          <color rgba="0.3 0.3 0.3 1"/>
+        </material>                
+      </visual>
+      
+      <arm_link_2_collision_geom_marco/>
+    </link>
+    
+    <!--Needed for simulation-->
+    <transmission name="arm_joint_0_joint_transmssion">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="arm_joint_0">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>        
+      <actuator name="arm_joint_0_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="arm_joint_1_joint_transmssion">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="arm_joint_1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>  
+      <actuator name="arm_joint_1_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="arm_joint_2_joint_transmssion">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="arm_joint_2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>  
+      <actuator name="arm_joint_2_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <gazebo reference="arm_link_0">
+      <material>Gazebo/Grey</material>
+    </gazebo>   
+    
+    <gazebo reference="arm_link_1">
+      <material>Gazebo/Grey</material>
+    </gazebo>  
+    
+    <gazebo reference="arm_link_2">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+    
+  </macro>
+  
+  <macro name="taurob_arm_base_no_gazebo_ros_control_with_calibration_macro" params="parent *origin">    
+    
+    <joint name="arm_joint_0" type="revolute">    
+      <insert_block name="origin"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
+      <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+      soft_upper_limit="${168 * M_PI / 180}"
+      k_position="${100}"
+      k_velocity="${2}"/>-->
+      <parent link="${parent}"/>
+      <child link="arm_link_0"/>
+    </joint>
+    
+    <link name="arm_link_0">
+      <xacro:inertial_cuboid_with_pose mass="2.0" x_length="${0.0475*2}" y_length="${0.038*2}" z_length="0.17651" >
+        <origin xyz="0.0 0.0 ${0.17651*0.5+ 0.001}" rpy="0 0 0" />
+      </xacro:inertial_cuboid_with_pose>      
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://taurob_arm_description/meshes/tarm_link_0_detailed.stl"/>
+        </geometry>
+        <material name="DarkGrey">
+          <color rgba="0.3 0.3 0.3 1"/>
+        </material>                
+      </visual>
+      
+      <arm_link_0_collision_geom_marco/>
+    </link>
+    
+    <joint name="arm_joint_1" type="revolute">    
       <origin xyz="-0.067 0.0 0.06" rpy="${arm_joint_1_offset} 0 0"/>
       <axis xyz="1 0 0"/>
       <limit lower="${0 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>

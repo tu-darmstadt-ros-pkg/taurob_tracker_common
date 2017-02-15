@@ -32,11 +32,23 @@
   
   <macro name="arm_link_1_collision_geom_marco">
     <collision>
-      <origin xyz="-0.045 ${0.651*0.5 -0.05}  0.0225" rpy="0 0 0" />
+      <origin xyz="-0.045 ${0.651*0.5 -0.05}  ${0.0225+0.016}" rpy="0 0 0" />
       <geometry>
-        <box size="${0.09} ${0.651}  0.136" />
+        <box size="${0.09} ${0.651 - 0.1*2}  0.104" />
       </geometry>
     </collision>
+    <collision>
+      <origin xyz="-0.045  ${0.651-0.1}  0.0225" rpy="0 0 0" />
+      <geometry>
+        <box size="${0.09} ${0.1}  0.136" />
+      </geometry>
+    </collision>    
+    <collision>
+      <origin xyz="-0.045  ${+0.0}  0.0225" rpy="0 0 0" />
+      <geometry>
+        <box size="${0.09} ${0.1}  0.136" />
+      </geometry>
+    </collision>    
   </macro>  
   
   <macro name="arm_link_2_collision_geom_marco">

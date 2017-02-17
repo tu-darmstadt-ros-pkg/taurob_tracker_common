@@ -296,7 +296,7 @@
       <origin xyz="${tracker_base_offset_x-flipper_offset_x} 0 ${track_offset_z}" rpy="0 0 0" />
       <axis xyz="0 1 0"/>
       
-      <limit lower="${-50 * M_PI / 180}" upper="${30 * M_PI / 180}"
+      <limit lower="${-38 * M_PI / 180}" upper="${22 * M_PI / 180}"
              effort="10000" velocity="${1.0 * 30 * M_PI / 180}" />
 <!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
                          soft_upper_limit="${45 * M_PI / 180}"

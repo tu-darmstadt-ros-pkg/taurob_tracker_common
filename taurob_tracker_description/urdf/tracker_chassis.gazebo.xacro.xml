@@ -101,8 +101,8 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
     </gazebo>
     
     <gazebo reference="flipper_link_0">
-      <mu1>200.0</mu1>
-      <mu2>100.0</mu2>
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
       <kp>500.0</kp>
       <kd>100.0</kd>
       <minDepth>0.001</minDepth>

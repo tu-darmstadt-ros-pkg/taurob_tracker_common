@@ -1,69 +1,69 @@
 <?xml version="1.0"?>
 
 <robot
-  xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <macro name="arm_link_0_collision_geom_marco">
+  <xacro:macro name="arm_link_0_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tarm_link_0.stl"/>
       </geometry>
     </collision>
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_1_collision_geom_marco">
+  <xacro:macro name="arm_link_1_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tarm_link_1.stl"/>
       </geometry>
     </collision>
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_2_collision_geom_marco">
+  <xacro:macro name="arm_link_2_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tarm_link_2.stl"/>
       </geometry>
     </collision>
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_3_collision_geom_marco">
+  <xacro:macro name="arm_link_3_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tarm_link_3.stl"/>
       </geometry>
     </collision>
-  </macro>
+  </xacro:macro>
 
-  <macro name="arm_link_4_collision_geom_marco">
+  <xacro:macro name="arm_link_4_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tarm_link_4.stl"/>
       </geometry>
     </collision>
-  </macro>
+  </xacro:macro>
 
-  <macro name="gripper_link_1_collision_geom_marco">
+  <xacro:macro name="gripper_link_1_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tgripper_link_1.stl"/>
       </geometry>
     </collision>
-  </macro>
+  </xacro:macro>
 
-  <macro name="gripper_link_2_collision_geom_marco">
+  <xacro:macro name="gripper_link_2_collision_geom_marco">
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://taurob_arm_description/meshes/tgripper_link_2.stl"/>
       </geometry>
     </collision>
-  </macro>
+  </xacro:macro>
   
 </robot>

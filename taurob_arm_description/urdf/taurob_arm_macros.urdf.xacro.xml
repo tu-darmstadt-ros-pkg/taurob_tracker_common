@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
-<robot     xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+<robot     xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <property name="M_PI" value="3.14159265359"/>
+  <xacro:property name="M_PI" value="3.14159265359"/>
   
-  <property name="taurob_arm_joints_error_threshold" value="0.016"/>
+  <xacro:property name="taurob_arm_joints_error_threshold" value="0.016"/>
   
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
   
   <!--Instantiates arm with 3 first joints without ros_control plugin-->
-  <macro name="taurob_arm_base_no_gazebo_ros_control_macro" params="parent *origin">    
+  <xacro:macro name="taurob_arm_base_no_gazebo_ros_control_macro" params="parent *origin">    
     
     <joint name="arm_joint_0" type="revolute">    
-      <insert_block name="origin"/>
+      <xacro:insert_block name="origin"/>
       <axis xyz="0 0 -1"/>
       <limit lower="${-180 * M_PI / 180}" upper="${180 * M_PI / 180}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -146,12 +146,12 @@
       <material>Gazebo/Grey</material>
     </gazebo>
     
-  </macro>
+  </xacro:macro>
   
-  <macro name="taurob_arm_base_no_gazebo_ros_control_with_calibration_macro" params="parent *origin">    
+  <xacro:macro name="taurob_arm_base_no_gazebo_ros_control_with_calibration_macro" params="parent *origin">    
     
     <joint name="arm_joint_0" type="revolute">    
-      <insert_block name="origin"/>
+      <xacro:insert_block name="origin"/>
       <axis xyz="0 0 -1"/>
       <limit lower="${-4.304 + taurob_arm_joints_error_threshold}" upper="${1.579 - taurob_arm_joints_error_threshold}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -293,11 +293,11 @@
       <material>Gazebo/Grey</material>
     </gazebo>
     
-  </macro>
+  </xacro:macro>
   
   
   <!--Instantiates arm with 3 first joints ros_control plugin for them-->
-  <macro name="taurob_arm_base_macro" params="parent *origin"> 
+  <xacro:macro name="taurob_arm_base_macro" params="parent *origin"> 
     
     <xacro:taurob_arm_base_no_gazebo_ros_control_macro parent="${parent}">
        <xacro:insert_block name="origin" />
@@ -311,10 +311,10 @@
       </plugin>
     </gazebo>
     
-  </macro>
+  </xacro:macro>
   
   
-  <macro name="taurob_arm_simple_eef_macro" params="parent *origin">
+  <xacro:macro name="taurob_arm_simple_eef_macro" params="parent *origin">
     
     <xacro:taurob_arm_base_macro parent="${parent}">  
       <xacro:insert_block name="origin"/>
@@ -365,10 +365,10 @@
     <gazebo reference="arm_link_3">
       <material>Gazebo/Grey</material>
     </gazebo>  
-  </macro>
+  </xacro:macro>
   
   
-  <macro name="taurob_arm_with_gripper_macro" params="parent *origin">
+  <xacro:macro name="taurob_arm_with_gripper_macro" params="parent *origin">
     
     <xacro:taurob_arm_base_macro parent="${parent}">  
       <xacro:insert_block name="origin"/>
@@ -668,6 +668,6 @@
         <joints>arm_joint_4 gripper_joint_0 gripper_joint_1 gripper_joint_1_1 gripper_joint_0_1</joints>
       </plugin>
     </gazebo>
-  </macro>
+  </xacro:macro>
 
 </robot>

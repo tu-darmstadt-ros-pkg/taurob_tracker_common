@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <robot
-  xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <macro name="arm_link_0_collision_geom_marco">
+  <xacro:macro name="arm_link_0_collision_geom_marco">
     <!--Lower block-->
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
@@ -28,9 +28,9 @@
         <box size="0.01 0.1 0.1" />
       </geometry>1#
     </collision>
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_1_collision_geom_marco">
+  <xacro:macro name="arm_link_1_collision_geom_marco">
     <collision>
       <origin xyz="-0.045 ${0.651*0.5 -0.05}  ${0.0225+0.016}" rpy="0 0 0" />
       <geometry>
@@ -58,36 +58,36 @@
       </geometry>
     </collision>
 
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_2_collision_geom_marco">
+  <xacro:macro name="arm_link_2_collision_geom_marco">
     <collision>
       <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
       <geometry>
         <box size="0.073 ${0.5125} 0.086" />
       </geometry>
     </collision>
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_3_collision_geom_simple_eef__marco">
+  <xacro:macro name="arm_link_3_collision_geom_simple_eef__marco">
     <collision>
       <origin xyz="0.045 ${-0.208*0.5 + 0.03919} 0.0" rpy="0 0 0" />
       <geometry>
         <box size="0.07 ${0.208} 0.091" />
       </geometry>
     </collision>
-  </macro>  
+  </xacro:macro>  
   
-  <macro name="arm_link_3_collision_geom_gripper_marco">
+  <xacro:macro name="arm_link_3_collision_geom_gripper_marco">
     <collision>
         <origin xyz=" ${-0.1518*0.5 + 0.03233} 0.04 0.0225" rpy="0 0 0" />
         <geometry>
           <box size=" ${0.1518} 0.07893 0.09334" />
         </geometry>
     </collision>
-  </macro>
+  </xacro:macro>
 
-  <macro name="arm_link_4_collision_geom_marco">
+  <xacro:macro name="arm_link_4_collision_geom_marco">
     <collision>
       <origin xyz="-0.06 0.0 0.0" rpy="0 0 0" />
       <geometry>
@@ -100,9 +100,9 @@
         <box size="0.06 ${0.13} 0.04" />
       </geometry>
     </collision>
-  </macro> 
+  </xacro:macro> 
   
-  <macro name="gripper_link_1_collision_geom_marco">
+  <xacro:macro name="gripper_link_1_collision_geom_marco">
     <!--Use simple geom below instead of two box meshes-->
     <!--
     <collision>
@@ -118,15 +118,15 @@
         <box size="0.07 0.01 0.08" />
       </geometry>
     </collision>
-  </macro>  
+  </xacro:macro>  
 
-  <macro name="gripper_link_2_collision_geom_marco">
+  <xacro:macro name="gripper_link_2_collision_geom_marco">
     <collision>
       <origin xyz="0.07 -0.025 0.0" rpy="0 0 0" />
       <geometry>
         <box size="0.10 0.01 0.055" />
       </geometry>
     </collision>
-  </macro>
+  </xacro:macro>
   
 </robot>

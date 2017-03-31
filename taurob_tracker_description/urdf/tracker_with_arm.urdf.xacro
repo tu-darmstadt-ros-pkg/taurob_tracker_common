@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <robot name="taurob_tracker"
-    xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
     
     <property name="flipper_offset_x" value="0.205" />
     <property name="flipper_offset_y" value="0.15" />

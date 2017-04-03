@@ -17,11 +17,11 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
 
   <!--  <xacro:include filename="$(find hector_tracked_vehicles_description)/urdf/tracked_wheel.urdf.xacro" />-->
 
-  <property name="wheel_radius_big" value="0.085" />
-  <property name="wheel_length" value="0.02" />
-  <property name="wheel_size_y" value="0.02" />
-  <property name="wheel_offset_y" value="0.25" />
-  <property name="wheel_offset_z_from_base_link" value="-0.0" />
+  <xacro:property name="wheel_radius_big" value="0.085" />
+  <xacro:property name="wheel_length" value="0.02" />
+  <xacro:property name="wheel_size_y" value="0.02" />
+  <xacro:property name="wheel_offset_y" value="0.25" />
+  <xacro:property name="wheel_offset_z_from_base_link" value="-0.0" />
 
   <xacro:property name="wheel_radius" value="0.2" />
   <xacro:property name="diff_z_offset" value="-0.12" />
@@ -66,7 +66,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
   </gazebo>
   
   
-  <macro name="tracker_flipper_move_gazebo_macro">
+  <xacro:macro name="tracker_flipper_move_gazebo_macro">
       <gazebo>
         <plugin name="mimic_flipper_joint_0" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
             <joint>flipper_joint_1</joint>
@@ -77,9 +77,9 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
             <hasPID/>
         </plugin>
     </gazebo>
-  </macro>
+  </xacro:macro>
 
-  <macro name="tracker_chassis_gazebo_force_based_move_macro">
+  <xacro:macro name="tracker_chassis_gazebo_force_based_move_macro">
 
     <gazebo reference="chassis_link">
       <mu1>0.0</mu1>
@@ -132,9 +132,9 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <publishOdometryTf>1</publishOdometryTf>
       </plugin>
     </gazebo>
-  </macro>
+  </xacro:macro>
 
-  <macro name="tracker_chassis_gazebo_fake_wheels_macro">
+  <xacro:macro name="tracker_chassis_gazebo_fake_wheels_macro">
 
     <!--<tracked_wheel parent="base_link" prefix="left_0" offset_x= "0.21100" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>-->
     <tracked_wheel parent="base_link" prefix="left_1" offset_x= "-0.1" offset_y = "${wheel_offset_y}" offset_z = "${wheel_offset_z_from_base_link}" reflect="1" wheel_radius="${wheel_radius_big}"/>
@@ -183,6 +183,6 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <publishOdometryMsg>1</publishOdometryMsg>
       </plugin>
     </gazebo>
-  </macro>
+  </xacro:macro>
 
 </robot>

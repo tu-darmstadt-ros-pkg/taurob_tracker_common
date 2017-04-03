@@ -4,29 +4,29 @@
   
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
   
-  <property name="tracker_base_size_x" value="1.0" />
-  <property name="tracker_base_size_y" value="0.5" />
-  <property name="tracker_base_size_z" value="0.2 " />
+  <xacro:property name="tracker_base_size_x" value="1.0" />
+  <xacro:property name="tracker_base_size_y" value="0.5" />
+  <xacro:property name="tracker_base_size_z" value="0.2 " />
   
-  <property name="tracker_base_offset_x" value="-0.122" />
-  <property name="tracker_base_offset_z" value="-0.08" />
+  <xacro:property name="tracker_base_offset_x" value="-0.122" />
+  <xacro:property name="tracker_base_offset_z" value="-0.08" />
   
-  <property name="flipper_offset_x" value="-0.051" />
-  <property name="flipper_upper_shortening_x" value="0.05" />
+  <xacro:property name="flipper_offset_x" value="-0.051" />
+  <xacro:property name="flipper_upper_shortening_x" value="0.05" />
   
   
   
   <!-- width overall is 0.58 ->  (0.58 - 0.0925)/2 = 0.24375 -->
-  <property name="track_offset_y" value="0.24375" />
+  <xacro:property name="track_offset_y" value="0.24375" />
   <!--Below pending clarification-->
-  <property name="track_offset_z" value="-0.09" /> 
+  <xacro:property name="track_offset_z" value="-0.09" /> 
   
-  <property name="track_wheel_radius" value="0.13" />
-  <property name="track_width" value="0.0925" />
+  <xacro:property name="track_wheel_radius" value="0.13" />
+  <xacro:property name="track_width" value="0.0925" />
   
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />
   
-  <macro name="tracker_chassis_macro">
+  <xacro:macro name="tracker_chassis_macro">
     
     <xacro:tracker_chassis_gazebo_force_based_move_macro />
     <xacro:tracker_flipper_move_gazebo_macro /> 
@@ -425,6 +425,6 @@
       -->
     </link>
     
-  </macro>
+  </xacro:macro>
   
 </robot>

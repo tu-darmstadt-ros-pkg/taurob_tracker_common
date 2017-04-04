@@ -4,7 +4,7 @@
     <param name="use_sim_time" value="true" />
 
     <!-- send the robot XML to param server -->
-    <param name="robot_description" command="$(find xacro)/xacro '$(find taurob_tracker_description)/urdf/tracker_standalone.urdf.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find taurob_tracker_description)/urdf/tracker_standalone.urdf.xacro'" />
 
     <!-- push robot_description to factory and spawn robot in gazebo -->
     <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model"

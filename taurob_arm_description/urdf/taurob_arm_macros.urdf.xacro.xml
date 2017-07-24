@@ -215,6 +215,16 @@
       </visual>-->
       
       <arm_link_1_collision_geom_marco/>
+      
+      <xacro:if value="$(arg add_self_filter_geom)">
+        <collision>
+          <origin xyz="-0.045 ${0.651*0.5 -0.05}  ${0.0225+0.016}" rpy="0 0 0" />
+          <geometry>
+            <box size="${0.09*2} ${0.651 - 0.1*2 + 0.1}  ${0.20}" />
+          </geometry>
+        </collision>
+    </xacro:if>
+     
     </link>
     
     <joint name="arm_joint_2" type="revolute">    
@@ -245,6 +255,17 @@
       </visual>
       
       <arm_link_2_collision_geom_marco/>
+      
+      <xacro:if value="$(arg add_self_filter_geom)">
+        <collision>
+          <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
+          <geometry>
+            <box size="${0.073*2} ${0.5125+ 0.1} ${0.086*2}" />
+          </geometry>
+        </collision>
+      </xacro:if>
+      
+      
     </link>
     
     <!--Needed for simulation-->

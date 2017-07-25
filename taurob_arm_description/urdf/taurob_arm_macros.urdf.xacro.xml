@@ -148,7 +148,9 @@
     
   </xacro:macro>
   
-  <xacro:macro name="taurob_arm_base_no_gazebo_ros_control_with_calibration_macro" params="parent *origin">    
+  <xacro:macro name="taurob_arm_base_no_gazebo_ros_control_with_calibration_macro" params="parent *origin">
+      
+    <xacro:arg name="add_self_filter_geom" default="false"/>
     
     <joint name="arm_joint_0" type="revolute">    
       <xacro:insert_block name="origin"/>
@@ -223,7 +225,7 @@
             <box size="${0.09*2} ${0.651 - 0.1*2 + 0.1}  ${0.20}" />
           </geometry>
         </collision>
-    </xacro:if>
+      </xacro:if>
      
     </link>
     

@@ -233,7 +233,7 @@
     </link>
     
     <joint name="arm_joint_2" type="revolute">    
-      <origin xyz="0.022 0.551 0.0" rpy="${arm_joint_2_offset} 0 0"/>
+      <origin xyz="0.022 0.551 0.0" rpy="${arm_joint_2_offset} 0 ${M_PI}"/>
       <axis xyz="1 0 0"/>
       <limit lower="${0.015 + taurob_arm_joints_error_threshold}" upper="${5.870 - taurob_arm_joints_error_threshold}" effort="1000" velocity="${1.0 * 30 * M_PI / 180}"/>
       <!--        <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
@@ -246,11 +246,12 @@
     
     <link name="arm_link_2">
       <xacro:inertial_cuboid_with_pose mass="6.0" x_length="0.073" y_length="${0.5125}" z_length="0.086" >
-        <origin xyz="${0.047} ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
+<!--        <origin xyz="${0.047} ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />-->
+        <origin xyz="${-0.047} ${-1*(-0.5125*0.5 + 0.048)} 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose> 
       
       <visual>
-        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 ${-M_PI}"/>
         <geometry>
           <mesh filename="package://taurob_arm_description/meshes/tarm_link_2.stl"/>
         </geometry>
@@ -263,7 +264,8 @@
       
       <xacro:if value="$(arg add_self_filter_geom)">
         <collision>
-          <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
+<!--           <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" /> -->
+          <origin xyz="-0.0365 ${-1*(-0.5125*0.5 + 0.048)} 0.0" rpy="0 0 0" />
           <geometry>
             <box size="${0.073*2} ${0.5125+ 0.1} ${0.086*2}" />
           </geometry>

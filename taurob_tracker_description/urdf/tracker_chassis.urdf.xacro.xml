@@ -197,7 +197,7 @@
         </material>
       </visual>
       
-      <visual>
+<!--      <visual>
         <origin xyz="0 -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
@@ -205,7 +205,7 @@
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
-      </visual>
+      </visual>-->
       
       <visual>
         <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} -${track_offset_y} 0.0" rpy="0 0 0"/>
@@ -227,7 +227,7 @@
         </material>
       </visual>
       
-      <visual>
+<!--      <visual>
         <origin xyz="0 ${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
@@ -235,7 +235,7 @@
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
-      </visual>      
+      </visual>      -->
       
       <visual>
         <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} ${track_offset_y} 0.0" rpy="0 0 0"/>
@@ -255,12 +255,12 @@
         </geometry>
       </collision>
       
-      <collision>
+<!--      <collision>
         <origin xyz="0 -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
-      </collision>
+      </collision>-->
       
       <collision>
         <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} -${track_offset_y} 0.0" rpy="0 0 0"/>
@@ -276,12 +276,12 @@
         </geometry>
       </collision>
       
-      <collision>
+<!--      <collision>
         <origin xyz="0 ${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
-      </collision>      
+      </collision>    -->  
       
       <collision>
         <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} ${track_offset_y} 0.0" rpy="0 0 0"/>
@@ -321,6 +321,7 @@
     </transmission>
     
     <link name="right_track_link">
+      <!-- main track visual -->
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -330,6 +331,26 @@
           <color rgba="0 0 0 1"/>
         </material>       
       </visual>
+      <!-- back wheel visual -->
+      <visual>
+        <origin xyz="${-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x} 0.0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>      
+      <!-- front wheel visual -->
+      <visual>
+        <origin xyz="${-(-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x)} 0.0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>  
       
       <!-- main track collision -->
       <collision>
@@ -338,9 +359,9 @@
           <box size="${tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
         </geometry>
       </collision>
-      <!-- back wheel collision TODO-->
+      <!-- back wheel collision -->
       <collision>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="${-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x} 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
@@ -348,9 +369,9 @@
           <color rgba="1 0 0 1"/>
         </material>
       </collision>     
-      <!-- front wheel collision TODO-->
+      <!-- front wheel collision -->
       <collision>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="${-(-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x)} 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
@@ -367,6 +388,7 @@
     </joint>
     
     <link name="left_track_link">
+      <!-- main track visual -->
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -376,6 +398,26 @@
           <color rgba="0 0 0 1"/>
         </material>       
       </visual>
+      <!-- back wheel visual -->
+      <visual>
+        <origin xyz="${-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x} 0.0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>      
+      <!-- front wheel visual -->
+      <visual>
+        <origin xyz="${-(-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x)} 0.0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>  
       
       <!-- main track collision -->
       <collision>
@@ -384,9 +426,9 @@
           <box size="${tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
         </geometry>
       </collision>
-      <!-- back wheel collision TODO-->
+      <!-- back wheel collision -->
       <collision>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="${-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x} 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
@@ -394,9 +436,9 @@
           <color rgba="1 0 0 1"/>
         </material>
       </collision>     
-      <!-- front wheel collision TODO-->
+      <!-- front wheel collision -->
       <collision>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
+        <origin xyz="${-(-0.25*tracker_base_size_x + 0.5*track_wheel_radius+0.5*flipper_offset_x)} 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
@@ -409,7 +451,7 @@
     <joint name="left_track_joint" type="fixed">
       <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} ${track_offset_y} ${track_offset_z}" rpy="0 0 0"/>
       <parent link="chassis_link"/>
-      <child link="right_track_link"/>
+      <child link="left_track_link"/>
     </joint>
     
     <link name="chassis_link">
@@ -457,10 +499,10 @@
         <geometry>
           <box size="${tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
         </geometry>
-      </collision>
+      </collision> -->
 
 	  <!--Left/right back track cylinder geoms-->
-      <collision>
+<!--      <collision>
         <origin xyz="${tracker_base_offset_x-(tracker_base_size_x*0.5-track_wheel_radius)} -${track_offset_y} ${track_offset_z}" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>

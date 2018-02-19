@@ -78,6 +78,84 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         </plugin>
     </gazebo>
   </xacro:macro>
+  
+  <xacro:macro name="tracked_vehicle_plugin_macro" params="left_track right_track">
+    <gazebo reference="chassis_link">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <!--<material>Gazebo/Grey</material>-->
+    </gazebo>
+
+    <gazebo reference="base_link">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+    </gazebo>
+    
+    <gazebo reference="flipper_link_0">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>500.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="flipper_link_1">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="left_track_link">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo reference="right_track_link">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    
+    <gazebo>
+      <plugin filename="libSimpleTrackedVehiclePlugin.so" name="simple_tracked_vehicle">
+        <body>base_link</body>
+        <left_track>${left_track}</left_track>
+        <right_track>${right_track}</right_track>
+        <track_mu>2</track_mu>
+        <track_mu2>0.5</track_mu2>
+      </plugin>
+    </gazebo>
+    
+    <gazebo>
+      <plugin filename="libKeysToCmdVelPlugin.so" name="keyboard_control">
+        <cmd_vel_topic>~/robot_description_gazebo/cmd_vel</cmd_vel_topic>
+      </plugin>
+    </gazebo>
+    
+  </xacro:macro>
 
   <xacro:macro name="tracker_chassis_gazebo_force_based_move_macro">
 

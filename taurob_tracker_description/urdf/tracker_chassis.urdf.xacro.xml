@@ -28,8 +28,8 @@
   
   <xacro:macro name="tracker_chassis_macro">
     
-    <xacro:tracker_chassis_gazebo_force_based_move_macro />
-<!--     <xacro:tracked_vehicle_plugin_macro left_track="left_track_link" right_track="right_track_link"/> -->
+<!--     <xacro:tracker_chassis_gazebo_force_based_move_macro /> -->
+    <xacro:tracked_vehicle_plugin_macro left_track="left_track_link" right_track="right_track_link"/>
     <xacro:tracker_flipper_move_gazebo_macro /> 
     
     
@@ -325,13 +325,19 @@
   </xacro:macro>
   
   <xacro:macro name="main_track_macro" params="name parent *origin">
-    <joint name="${name}_joint" type="fixed">
+    <joint name="${name}_joint" type="revolute">
       <xacro:insert_block name="origin"/>
+      <limit effort="1000" velocity="1" upper="0" lower="0"/>
       <parent link="${parent}"/>
       <child link="${name}_link"/>
     </joint>
     
     <link name="${name}_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="2" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" /> 
+      </inertial>
       <!-- main track visual -->
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>

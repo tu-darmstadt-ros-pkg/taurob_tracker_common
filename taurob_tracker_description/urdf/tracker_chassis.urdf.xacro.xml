@@ -4,6 +4,8 @@
   
   <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
   
+  <xacro:property name="M_PI" value="3.14159265359" />
+  
   <xacro:property name="tracker_base_size_x" value="1.0" />
   <xacro:property name="tracker_base_size_y" value="0.5" />
   <xacro:property name="tracker_base_size_z" value="0.2 " />
@@ -32,13 +34,61 @@
     <xacro:tracked_vehicle_plugin_macro left_track="left_track_link" right_track="right_track_link"/>
     <xacro:tracker_flipper_move_gazebo_macro /> 
     
-    
+    <!-- urdf root -->
     <link name="base_link"/>
     
     <joint name="chassis_joint" type="fixed">
       <origin xyz="${-tracker_base_offset_x} 0 0.193" rpy="0 0 0"/>
       <parent link="base_link"/>
       <child link="chassis_link"/>
+    </joint>
+    
+    <link name="chassis_link">
+      <xacro:inertial_cuboid_with_pose mass="30" x_length="${tracker_base_size_x*0.66}" y_length="${tracker_base_size_y}" z_length="${tracker_base_size_z}" >
+        <origin xyz="${-tracker_base_size_x*0.25} 0.0 -0.05" rpy="0 0 0" />
+      </xacro:inertial_cuboid_with_pose>
+      
+      <!-- chassis visual -->
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis_no_tracks.dae"/>
+        </geometry>
+      </visual>
+      
+      <!-- Chassis collision -->
+      <collision>
+        <origin xyz="${tracker_base_offset_x-0.13} 0.0 ${tracker_base_offset_z+0.005}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.7 0.5 0.15"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <!-- main tracks -->
+    <xacro:main_track_macro name="right_track" parent="chassis_link">
+      <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} ${-track_offset_y} ${track_offset_z}" rpy="0 0 0"/>  
+    </xacro:main_track_macro>
+    
+    
+    <xacro:main_track_macro name="left_track" parent="chassis_link">
+      <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} ${track_offset_y} ${track_offset_z}" rpy="0 0 0"/>  
+    </xacro:main_track_macro>
+    
+    <joint name="flipper_joint_0" type="revolute">
+      <origin xyz="${tracker_base_offset_x-(tracker_base_size_x*0.5-track_wheel_radius)} 0 ${track_offset_z}" rpy="0 0 0" />
+      <axis xyz="0 1 0"/>
+      <mimic joint="flipper_joint_1" multiplier="0.46"/>
+      
+      <limit lower="${-170 * M_PI / 180}" upper="${180 * M_PI / 180}"
+             effort="10000" velocity="${10.0 * 360 * M_PI / 180}" />
+<!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
+                         soft_upper_limit="${45 * M_PI / 180}"
+                         k_position="${100}"
+                         k_velocity="${2}"/>-->
+      
+      <parent link="chassis_link"/>
+      <child link="flipper_link_0"/>
     </joint>
     
     
@@ -152,22 +202,6 @@
       </collision>      
     </link>
     
-    <joint name="flipper_joint_0" type="revolute">
-      <origin xyz="${tracker_base_offset_x-(tracker_base_size_x*0.5-track_wheel_radius)} 0 ${track_offset_z}" rpy="0 0 0" />
-      <axis xyz="0 1 0"/>
-      <mimic joint="flipper_joint_1" multiplier="0.46"/>
-      
-      <limit lower="${-170 * M_PI / 180}" upper="${180 * M_PI / 180}"
-             effort="10000" velocity="${10.0 * 360 * M_PI / 180}" />
-<!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
-                         soft_upper_limit="${45 * M_PI / 180}"
-                         k_position="${100}"
-                         k_velocity="${2}"/>-->
-      
-      <parent link="chassis_link"/>
-      <child link="flipper_link_0"/>
-    </joint>
-    
     <!--Needed for simulation-->
     <transmission name="flipper_joint_0_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
@@ -181,91 +215,9 @@
     </transmission>    
     
     
-    
-    <link name="flipper_link_1">
-      <xacro:inertial_cuboid_with_pose mass="1.0" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius*2} 0.0 0.0" rpy="0 0 0" />
-      </xacro:inertial_cuboid_with_pose>    
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      
-      <!-- right front wheel visual -->
-      <visual>
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
-        <geometry>
-          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0 0 0 1"/>
-        </material>
-      </visual>
-      
-      <!-- right flipper track visual -->
-      <visual>
-        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} -${track_offset_y} 0.0" rpy="0 0 0"/>
-        <geometry>
-          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0 0 0 1"/>
-        </material>
-      </visual>
-      
-      <!-- left front wheel visual -->
-      <visual>
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
-        <geometry>
-          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0 0 0 1"/>
-        </material>
-      </visual>
-      
-      <!-- left flipper track visual -->
-      <visual>
-        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} ${track_offset_y} 0.0" rpy="0 0 0"/>
-        <geometry>
-          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
-        </geometry>
-        <material name="black">
-          <color rgba="0 0 0 1"/>
-        </material>
-      </visual>
-      
-      
-      <collision>
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
-        <geometry>
-          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
-        </geometry>
-      </collision>
-      
-      
-      <collision>
-        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} -${track_offset_y} 0.0" rpy="0 0 0"/>
-        <geometry>
-          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
-        </geometry>
-      </collision>
-      
-      <collision>
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
-        <geometry>
-          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
-        </geometry>
-      </collision>
-      
-      <collision>
-        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} ${track_offset_y} 0.0" rpy="0 0 0"/>
-        <geometry>
-          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
-        </geometry>
-      </collision>    
-    </link>    
-    
-    
+    <!-- right front flipper -->
     <joint name="flipper_joint_1" type="revolute">
-      <origin xyz="${tracker_base_offset_x-flipper_offset_x} 0 ${track_offset_z}" rpy="0 0 0" />
+      <origin xyz="${tracker_base_offset_x-flipper_offset_x} -${track_offset_y} ${track_offset_z}" rpy="0 0 0" />
       <axis xyz="0 1 0"/>
       
       <limit lower="${-22 * M_PI / 180}" upper="${35 * M_PI / 180}"
@@ -280,6 +232,50 @@
     </joint>
     
     
+    <link name="flipper_link_1">
+      <xacro:inertial_cuboid_with_pose mass="1.0" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius*2} 0.0 0.0" rpy="0 0 0" />
+      </xacro:inertial_cuboid_with_pose>    
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      
+      <!-- right front wheel visual -->
+      <visual>
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} 0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      
+      <!-- right flipper track visual -->
+      <visual>
+        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} 0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>      
+      
+      <collision>
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} 0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
+        </geometry>
+      </collision>
+      
+      
+      <collision>
+        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} 0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
+        </geometry>
+      </collision>
+    </link>
+    
     <!--Needed for simulation-->
     <transmission name="flipper_joint_1_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
@@ -292,36 +288,78 @@
       </actuator>
     </transmission>
     
-    <xacro:main_track_macro name="right_track" parent="chassis_link">
-      <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} ${-track_offset_y} ${track_offset_z}" rpy="0 0 0"/>  
-    </xacro:main_track_macro>
-    
-    
-    <xacro:main_track_macro name="left_track" parent="chassis_link">
-      <origin xyz="${tracker_base_offset_x - flipper_offset_x - (tracker_base_size_x*0.5-track_wheel_radius-flipper_offset_x)*0.5} ${track_offset_y} ${track_offset_z}" rpy="0 0 0"/>  
-    </xacro:main_track_macro>
-    
-    <link name="chassis_link">
-      <xacro:inertial_cuboid_with_pose mass="30" x_length="${tracker_base_size_x*0.66}" y_length="${tracker_base_size_y}" z_length="${tracker_base_size_z}" >
-        <origin xyz="${-tracker_base_size_x*0.25} 0.0 -0.05" rpy="0 0 0" />
-      </xacro:inertial_cuboid_with_pose>
+    <!-- left front flipper -->
+    <joint name="flipper_joint_2" type="revolute">
+      <origin xyz="${tracker_base_offset_x-flipper_offset_x} ${track_offset_y} ${track_offset_z}" rpy="0 0 0" />
+      <axis xyz="0 1 0"/>
+      <mimic joint="flipper_joint_1" multiplier="1"/>
       
-      <!-- chassis visual -->
+      <limit lower="${-22 * M_PI / 180}" upper="${35 * M_PI / 180}"
+             effort="10000" velocity="${1.0 * 30 * M_PI / 180}" />
+<!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
+                         soft_upper_limit="${45 * M_PI / 180}"
+                         k_position="${100}"
+                         k_velocity="${2}"/>-->
+      
+      <parent link="chassis_link"/>
+      <child link="flipper_link_2"/>
+    </joint>
+    
+    <link name="flipper_link_2">
+      <xacro:inertial_cuboid_with_pose mass="1.0" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius*2} 0.0 0.0" rpy="0 0 0" />
+      </xacro:inertial_cuboid_with_pose>    
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      
+      <!-- left front wheel visual -->
       <visual>
-        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} 0 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
-          <mesh filename="package://taurob_tracker_description/meshes/tracker_chassis_no_tracks.dae"/>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
       </visual>
       
-      <!-- Chassis collision -->
-      <collision>
-        <origin xyz="${tracker_base_offset_x-0.13} 0.0 ${tracker_base_offset_z+0.005}" rpy="0 0 0"/>
+      <!-- left flipper track visual -->
+      <visual>
+        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} 0 0.0" rpy="0 0 0"/>
         <geometry>
-          <box size="0.7 0.5 0.15"/>
+          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
+        </geometry>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+      
+      <collision>
+        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} 0 0.0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
         </geometry>
       </collision>
+      
+      <collision>
+        <origin xyz="${(tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x)*0.5} 0 0.0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${tracker_base_size_x*0.5-track_wheel_radius+flipper_offset_x} ${track_width} ${track_wheel_radius*2}"/>
+        </geometry>
+      </collision>    
     </link>
+    
+    
+    <!--Needed for simulation-->
+    <transmission name="flipper_joint_2_joint_transmssion">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="flipper_joint_2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="flipper_joint_2_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
   </xacro:macro>
   
   <xacro:macro name="main_track_macro" params="name parent *origin">

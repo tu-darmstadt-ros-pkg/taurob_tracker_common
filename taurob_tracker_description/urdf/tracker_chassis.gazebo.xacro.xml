@@ -67,19 +67,42 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
   
   
   <xacro:macro name="tracker_flipper_move_gazebo_macro">
-      <gazebo>
-        <plugin name="mimic_flipper_joint_0" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
-            <joint>flipper_joint_1</joint>
-            <mimicJoint>flipper_joint_0</mimicJoint>
-            <multiplier>0.46</multiplier>
-            <offset>0.0</offset>
-            <maxEffort>10000</maxEffort>
-            <hasPID/>
-        </plugin>
+    <gazebo>
+      <plugin name="mimic_flipper_joint_0" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+        <joint>flipper_joint_1</joint>
+        <mimicJoint>flipper_joint_0</mimicJoint>
+        <multiplier>0.46</multiplier>
+        <offset>0.0</offset>
+        <maxEffort>10000</maxEffort>
+        <hasPID/>
+      </plugin>
+    </gazebo>
+    <gazebo>
+      <plugin name="mimic_left_flipper_joint" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+        <joint>flipper_joint_1</joint>
+        <mimicJoint>left_flipper_joint</mimicJoint>
+        <multiplier>1</multiplier>
+        <offset>0.0</offset>
+        <maxEffort>10000</maxEffort>
+        <hasPID/>
+      </plugin>
     </gazebo>
   </xacro:macro>
   
-  <xacro:macro name="tracked_vehicle_plugin_macro" params="left_track right_track">
+  <xacro:macro name="set_track_gazebo_properties" params="link">
+    <gazebo reference="${link}">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>1.0</maxVel>
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>
+  
+  <xacro:macro name="tracked_vehicle_plugin_macro" params="left_track left_flipper right_track right_flipper">
+    <!-- properties -->
     <gazebo reference="chassis_link">
       <mu1>0.0</mu1>
       <mu2>0.0</mu2>
@@ -109,53 +132,27 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
       <material>Gazebo/Black</material>
     </gazebo>
     
-    <gazebo reference="flipper_link_1">
-      <mu1>0.0</mu1>
-      <mu2>0.0</mu2>
-      <kp>1000000.0</kp>
-      <kd>100.0</kd>
-      <minDepth>0.001</minDepth>
-      <maxVel>1.0</maxVel>
-      <material>Gazebo/Black</material>
-    </gazebo>
+    <xacro:set_track_gazebo_properties link="flipper_link_1"/>
+    <xacro:set_track_gazebo_properties link="left_flipper_link"/>
+    <xacro:set_track_gazebo_properties link="left_track_link"/>
+    <xacro:set_track_gazebo_properties link="right_track_link"/>
     
-    <gazebo reference="left_track_link">
-      <mu1>0.0</mu1>
-      <mu2>0.0</mu2>
-      <kp>1000000.0</kp>
-      <kd>100.0</kd>
-      <minDepth>0.001</minDepth>
-      <maxVel>1.0</maxVel>
-      <material>Gazebo/Black</material>
-    </gazebo>
-    
-    <gazebo reference="right_track_link">
-      <mu1>0.0</mu1>
-      <mu2>0.0</mu2>
-      <kp>1000000.0</kp>
-      <kd>100.0</kd>
-      <minDepth>0.001</minDepth>
-      <maxVel>1.0</maxVel>
-      <material>Gazebo/Black</material>
-    </gazebo>
-    
+    <!-- plugins -->
     <gazebo>
       <plugin filename="libSimpleTrackedVehiclePlugin.so" name="simple_tracked_vehicle">
         <body>base_link</body>
-        <left_track>${left_track}</left_track>
-        <right_track>${right_track}</right_track>
-        <track_mu>2</track_mu>
-        <track_mu2>0.5</track_mu2>
+        <left_track0>${left_track}</left_track0>
+        <left_track1>${left_flipper}</left_track1>
+        <right_track0>${right_track}</right_track0>
+        <right_track1>${right_flipper}</right_track1>
+        <track_mu>5</track_mu>
+        <track_mu2>2</track_mu2>
       </plugin>
-    </gazebo>
-    
-    <gazebo>
+
       <plugin filename="libKeysToCmdVelPlugin.so" name="keyboard_control">
         <cmd_vel_topic>~/robot_description_gazebo/cmd_vel</cmd_vel_topic>
       </plugin>
-    </gazebo>
-    
-    <gazebo>
+
       <plugin name="tracked_vehicle_relay" filename="libgazebo_ros_tracked_vehicle.so">
         <ros_command_topic>/cmd_vel</ros_command_topic>
         <gz_command_topic>~/robot_description_gazebo/cmd_vel</gz_command_topic>

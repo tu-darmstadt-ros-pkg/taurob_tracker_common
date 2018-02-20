@@ -214,34 +214,6 @@
       </actuator>
     </transmission>
     
-<!--    <joint name="flipper_joint_1" type="revolute">
-      <axis xyz="0 1 0"/>
-      <origin xyz="${tracker_base_offset_x-flipper_offset_x} 0 ${track_offset_z}" rpy="0 0 0" />
-      <limit lower="${-22 * M_PI / 180}" upper="${35 * M_PI / 180}"
-             effort="10000" velocity="${1.0 * 30 * M_PI / 180}" />
-      
-      <parent link="chassis_link"/>
-      <child link="flipper_link_1"/>
-    </joint>
-    
-    <link name="flipper_link_1">
-      <xacro:inertial_cuboid_with_pose mass="1" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
-        <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius*2} 0.0 0.0" rpy="0 0 0" />
-      </xacro:inertial_cuboid_with_pose>   
-    </link>-->
-    
-    <!--Needed for simulation-->
-<!--    <transmission name="flipper_joint_1_joint_transmssion">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="flipper_joint_1">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="flipper_joint_1_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission>-->
-    
     <!-- right front flipper -->
     <xacro:flipper_macro name="" suffix="1" parent="chassis_link">
       <origin xyz="${tracker_base_offset_x-flipper_offset_x} -${track_offset_y} ${track_offset_z}" rpy="0 0 0" />  
@@ -255,12 +227,24 @@
   </xacro:macro>
   
   <xacro:macro name="main_track_macro" params="name parent *origin">
-    <joint name="${name}_joint" type="revolute">
+    <joint name="${name}_fixed_joint" type="revolute">
       <xacro:insert_block name="origin"/>
       <limit effort="1000" velocity="1" upper="0" lower="0"/>
       <parent link="${parent}"/>
       <child link="${name}_link"/>
     </joint>
+    
+    <!--Needed for simulation-->
+    <transmission name="${name}_fixed_joint_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_fixed_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_fixed_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
     
     <link name="${name}_link">
       <inertial>

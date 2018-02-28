@@ -25,6 +25,7 @@
   <xacro:property name="track_width" value="0.0925" />
   
   <xacro:include filename="$(find taurob_tracker_description)/urdf/tracker_chassis.gazebo.xacro.xml" />
+  <xacro:include filename="$(find hector_xacro_tools)/urdf/inertia_tensors.urdf.xacro" />
   
   <xacro:macro name="tracker_chassis_macro">
     

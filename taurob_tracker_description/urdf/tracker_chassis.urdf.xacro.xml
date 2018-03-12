@@ -171,10 +171,10 @@
     <transmission name="flipper_joint_0_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="flipper_joint_0">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="flipper_joint_0_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>    
@@ -312,10 +312,10 @@
     <transmission name="flipper_joint_1_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="flipper_joint_1">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="flipper_joint_1_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>

@@ -104,10 +104,10 @@
     <transmission name="arm_joint_0_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_0">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>        
       <actuator name="arm_joint_0_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -115,10 +115,10 @@
     <transmission name="arm_joint_1_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_1">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>  
       <actuator name="arm_joint_1_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -126,10 +126,10 @@
     <transmission name="arm_joint_2_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_2">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>  
       <actuator name="arm_joint_2_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -274,10 +274,10 @@
     <transmission name="arm_joint_0_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_0">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>        
       <actuator name="arm_joint_0_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -285,10 +285,10 @@
     <transmission name="arm_joint_1_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_1">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>  
       <actuator name="arm_joint_1_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -296,10 +296,10 @@
     <transmission name="arm_joint_2_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_2">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>  
       <actuator name="arm_joint_2_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -376,10 +376,10 @@
     <transmission name="arm_joint_3_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_3">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>        
       <actuator name="arm_joint_3_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission> 
@@ -597,10 +597,10 @@
     <transmission name="arm_joint_3_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_3">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>        
       <actuator name="arm_joint_3_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -608,10 +608,10 @@
     <transmission name="arm_joint_4_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="arm_joint_4">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>        
       <actuator name="arm_joint_4_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission> 
@@ -619,10 +619,10 @@
     <transmission name="gripper_joint_0_joint_transmssion">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="gripper_joint_0">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>        
       <actuator name="gripper_joint_0_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission> 

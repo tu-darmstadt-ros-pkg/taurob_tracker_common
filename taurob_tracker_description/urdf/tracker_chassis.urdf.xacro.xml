@@ -44,7 +44,7 @@
     </joint>
     
     <link name="chassis_link">
-      <xacro:inertial_cuboid_with_pose mass="30" x_length="${tracker_base_size_x*0.66}" y_length="${tracker_base_size_y}" z_length="${tracker_base_size_z}" >
+      <xacro:inertial_cuboid_with_pose mass="26" x_length="${tracker_base_size_x*0.66}" y_length="${tracker_base_size_y}" z_length="${tracker_base_size_z}" >
         <origin xyz="${-tracker_base_size_x*0.25} 0.0 -0.05" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>
       
@@ -98,7 +98,7 @@
       </xacro:inertial_cuboid_with_pose>    
       <origin xyz="0 0 0" rpy="0 0 0" />
       
-      <visual>
+      <!--<visual>
         <origin xyz="${tracker_base_size_x-2*track_wheel_radius-flipper_upper_shortening_x} -${track_offset_y} 0.0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder length="${track_width}" radius="${track_wheel_radius}"/>
@@ -199,7 +199,7 @@
         <geometry>
           <box size="${tracker_base_size_x-2*track_wheel_radius} ${track_width} ${track_wheel_radius*2}"/>
         </geometry>
-      </collision>      
+      </collision> -->     
     </link>
     
     <!--Needed for simulation-->
@@ -248,9 +248,9 @@
     
     <link name="${name}_link">
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="2" />
-        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" /> 
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/> 
       </inertial>
       <!-- main track visual -->
       <visual>
@@ -337,11 +337,7 @@
       
       <limit lower="${-22 * M_PI / 180}" upper="${35 * M_PI / 180}"
              effort="10000" velocity="${1.0 * 30 * M_PI / 180}" />
-<!--      <safety_controller soft_lower_limit="${-25 * M_PI / 180}"
-                         soft_upper_limit="${45 * M_PI / 180}"
-                         k_position="${100}"
-                         k_velocity="${2}"/>-->
-      
+
       <parent link="${parent}"/>
       <child link="${xname}flipper_link${xsuffix}"/>
     </joint>
@@ -350,7 +346,6 @@
       <xacro:inertial_cuboid_with_pose mass="1.0" x_length="${tracker_base_size_x*0.5}" y_length="${track_width*2}" z_length="0.17651" >
         <origin xyz="${tracker_base_size_x*0.5-track_wheel_radius*2} 0.0 0.0" rpy="0 0 0" />
       </xacro:inertial_cuboid_with_pose>    
-      <origin xyz="0 0 0" rpy="0 0 0" />
       
       <!-- front wheel visual -->
       <visual>

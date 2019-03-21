@@ -8,6 +8,7 @@
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
+<!--         <box size="0.1 0.1 0.08" /> -->
         <box size="0.1 0.1 0.08" />
       </geometry>
       <material name="DarkGrey">
@@ -16,17 +17,20 @@
     </collision>
     <!--Rounded part-->
     <collision>
-      <origin xyz="-0.0265 0 0.055" rpy="${M_PI*0.5} 0 ${M_PI*0.5}"/>
+<!--      <origin xyz="-0.0265 0 0.055" rpy="${M_PI*0.5} 0 ${M_PI*0.5}"/>-->
+      <origin xyz="0.0 0.0265 -0.055" rpy="0 ${-M_PI*0.5} ${-M_PI*0.5}"/>
       <geometry>
         <cylinder radius="0.048" length="0.043" />
       </geometry>
     </collision>
     <!--Angled block-->
     <collision>
-      <origin xyz="0.02 0.0 0.06" rpy="0 ${M_PI*-0.18} 0" />
+<!--       <origin xyz="0.02 0.0 0.06" rpy="0 ${M_PI*-0.18} 0" /> -->
+      <origin xyz="0.0 -0.02 -0.06" rpy="${-M_PI*-0.18} 0 0" />
       <geometry>
-        <box size="0.01 0.1 0.1" />
-      </geometry>1#
+<!--        <box size="0.01 0.1 0.1" />-->
+        <box size="0.1 0.01 0.1" />
+      </geometry>
     </collision>
   </xacro:macro>  
   
@@ -62,9 +66,10 @@
   
   <xacro:macro name="arm_link_2_collision_geom_marco">
     <collision>
-      <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />
+<!--      <origin xyz="0.0365 ${-0.5125*0.5 + 0.048} 0.0" rpy="0 0 0" />-->
+      <origin xyz="-0.0365 ${-1*(-0.5125*0.5 + 0.048)} 0.0" rpy="0 0 0" />
       <geometry>
-        <box size="0.073 ${0.5125} 0.086" />
+        <box size="0.073 0.5125 0.086" />
       </geometry>
     </collision>
   </xacro:macro>  

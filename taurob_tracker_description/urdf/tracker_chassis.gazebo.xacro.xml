@@ -157,7 +157,7 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <cmd_vel_topic>~/robot_description_gazebo/cmd_vel</cmd_vel_topic>
       </plugin>
 
-      <plugin name="tracked_vehicle_relay" filename="libgazebo_ros_tracked_vehicle.so">
+      <plugin name="tracked_vehicle_relay" filename="libgazebo_ros_cmd_vel_relay.so">
         <ros_command_topic>/cmd_vel_raw</ros_command_topic>
         <gz_command_topic>~/robot_description_gazebo/cmd_vel</gz_command_topic>
       </plugin>

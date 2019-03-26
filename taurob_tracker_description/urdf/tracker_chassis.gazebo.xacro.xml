@@ -147,7 +147,8 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
     
     <!-- plugins -->
     <gazebo>
-      <plugin filename="libSimpleTrackedVehiclePlugin.so" name="simple_tracked_vehicle">
+      <plugin filename="libgazebo_ros_tracked_vehicle_plugin.so" name="multi_tracked_vehicle">
+        <command_topic>/cmd_vel_raw</command_topic>
         <body>base_link</body>
         <left_track0>${left_track}</left_track0>
         <left_track1>${left_flipper}</left_track1>
@@ -161,13 +162,8 @@ See https://bitbucket.org/osrf/gazebo/issues/863/tracksdriveplugin for some furt
         <max_angular_speed>1</max_angular_speed>
       </plugin>
 
-      <plugin filename="libKeysToCmdVelPlugin.so" name="keyboard_control">
+      <plugin filename="libkeys_to_cmd_vel_plugin.so" name="keyboard_control">
         <cmd_vel_topic>~/robot_description_gazebo/cmd_vel</cmd_vel_topic>
-      </plugin>
-
-      <plugin name="tracked_vehicle_relay" filename="libgazebo_ros_cmd_vel_relay.so">
-        <ros_command_topic>/cmd_vel_raw</ros_command_topic>
-        <gz_command_topic>~/robot_description_gazebo/cmd_vel</gz_command_topic>
       </plugin>
     </gazebo>
     

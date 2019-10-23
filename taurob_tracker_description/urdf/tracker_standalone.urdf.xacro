@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <robot name="taurob_tracker"
-    xmlns:xacro="http://ros.org/wiki/xacro">
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
     
     <xacro:property name="flipper_offset_x" value="0.205" />
     <xacro:property name="flipper_offset_y" value="0.15" />
